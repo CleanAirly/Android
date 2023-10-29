@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtErrorNombreLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Nombre de usuario incorrecto"
+        android:textColor="#7C0606"
+        app:layout_constraintEnd_toEndOf="@+id/nombreUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/nombreUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuarioLogin" />
+
+    <TextView
+        android:id="@+id/txtErrorContrasenyaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Contraseña incorrecta"
+        android:textColor="#7C0606"
+        app:layout_constraintEnd_toEndOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/ContrasenyaUsuarioLogin" />
+
+    <TextView
+        android:id="@+id/txtErrorConfContrasenyaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="La contraseña no coincide"
+        android:textColor="#7C0606"
+        app:layout_constraintEnd_toEndOf="@+id/confirmarContrasenyaUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/confirmarContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/confirmarContrasenyaUsuarioLogin" />
+
+    <ImageButton
+        android:id="@+id/imageButton9"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="-16dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintStart_toEndOf="@+id/imageButton10"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
+
+    <ImageButton
+        android:id="@+id/imageButton15"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/circulo3"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton12"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton13" />
+
+    <ImageButton
+        android:id="@+id/imageButton11"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="-8dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="-8dp"
+        android:layout_marginTop="-24dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton12"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_marginBottom="-8dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton13"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_marginBottom="-8dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Descubre el aire que respiras"
+        android:textColor="@color/colortxt"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/switchLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:thumb="@drawable/thumb_selector"
+        app:layout_constraintBottom_toTopOf="@+id/txtNombreLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:switchMinWidth="140dp"
+        app:track="@drawable/track_selector" />
+
+    <TextView
+        android:id="@+id/txtNombreLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Nombre de usuario:"
+        android:textColor="@color/colortxt"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/nombreUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/nombreUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/switchLogin" />
+
+    <EditText
+        android:id="@+id/nombreUsuarioLogin"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/textbox"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreLogin" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Contraseña:"
+        android:textColor="@color/colortxt"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuarioLogin" />
+
+    <EditText
+        android:id="@+id/ContrasenyaUsuarioLogin"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/textbox"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtConfContrasenya"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/txtConfContrasenya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Confirmar contraseña"
+        android:textColor="@color/colortxt"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirmarContrasenyaUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/confirmarContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/ContrasenyaUsuarioLogin" />
+
+    <EditText
+        android:id="@+id/confirmarContrasenyaUsuarioLogin"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/textbox"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonAccederLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtConfContrasenya" />
+
+    <Button
+        android:id="@+id/botonAccederLogin"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/botones"
+        android:fontFamily="@font/roboto"
+        android:onClick="botonLoginLanding"
+        android:text="Acceder"
+        android:textColor="#F0FAFE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/confirmarContrasenyaUsuarioLogin" />
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="Inicia sesión"
+        android:textColor="#F0FAFE"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchLogin"
+        app:layout_constraintStart_toStartOf="@+id/switchLogin"
+        app:layout_constraintTop_toTopOf="@+id/switchLogin" />
+
+    <TextView
+        android:id="@+id/txtRegistrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Registrarse"
+        android:textColor="@color/colortxt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchLogin"
+        app:layout_constraintEnd_toEndOf="@+id/switchLogin"
+        app:layout_constraintTop_toTopOf="@+id/switchLogin" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginStart="-164dp"
+        android:layout_marginBottom="-24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/probetalogo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

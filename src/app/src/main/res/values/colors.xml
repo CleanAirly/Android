@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBotones">#2A3EC9</color>
+    <color name="colorInputs">#DEE6FB</color>
+    <color name="colortxt">#192052</color>
+    <color name="colorFondo">#F0FAFE</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorRectangulos">#F1F4FD</color>
+    <color name="colorCirculo1">#DCE6FD</color>
+    <color name="colorCirculo2">#C2D5FB</color>
+    <color name="colorCirculo3">#9BBDF9</color>
+</resources>
