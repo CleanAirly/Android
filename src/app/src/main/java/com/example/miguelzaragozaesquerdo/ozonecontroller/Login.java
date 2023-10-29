@@ -27,10 +27,14 @@ public class Login extends AppCompatActivity {
     private EditText InputContrasenya;
     private EditText InputConfContrasenya;
 
+    private Servicios servicios;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
+        servicios = new Servicios("TEST");
 
         switchOnOff = findViewById(R.id.switchLogin);
 
@@ -75,7 +79,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void botonLoginLanding(View view) {
-        Intent intent = new Intent(this, Home.class);
-        startActivity(intent);
+        servicios.login(InputNombre.getText().toString() , InputContrasenya.getText().toString());
+
+        //Intent intent = new Intent(this, Home.class);
+        //startActivity(intent);
     }
 }
