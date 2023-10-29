@@ -2,6 +2,7 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,7 +35,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        servicios = new Servicios("TEST");
+        servicios = new Servicios();
 
         switchOnOff = findViewById(R.id.switchLogin);
 
@@ -79,7 +80,15 @@ public class Login extends AppCompatActivity {
     }
 
     public void botonLoginLanding(View view) {
-        servicios.login(InputNombre.getText().toString() , InputContrasenya.getText().toString());
+        String username = InputNombre.getText().toString();
+        String password = InputContrasenya.getText().toString();
+
+        if(username.equals("") || password.equals("")){
+            Log.d("TEST - VACIO", "funciona");
+        }
+        else{
+            servicios.login(username, password);
+        }
 
         //Intent intent = new Intent(this, Home.class);
         //startActivity(intent);
