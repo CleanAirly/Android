@@ -28,14 +28,10 @@ public class Login extends AppCompatActivity {
     private EditText InputContrasenya;
     private EditText InputConfContrasenya;
 
-    private Servicios servicios;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-
-        servicios = new Servicios();
 
         switchOnOff = findViewById(R.id.switchLogin);
 
@@ -87,10 +83,25 @@ public class Login extends AppCompatActivity {
             Log.d("TEST - VACIO", "");
         }
         else{
-            servicios.login(username, password);
-        }
+            PeticionarioREST elPeticionario = new PeticionarioREST();
 
-        //Intent intent = new Intent(this, Home.class);
-        //startActivity(intent);
+            elPeticionario.hacerPeticionREST("POST", "http://10.236.40.117:3001/api/sensor/login/",
+                    "{\"email\": \"" + username + "\", \"password\": " + password + "}",
+                    new PeticionarioREST.RespuestaREST () {
+                        @Override
+                        public void callback(int codigo, String cuerpo) {
+                            Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
+                            if(cuerpo.equals("true")){
+                                redireccion(username);
+                            }
+                        }
+                    });
+        }
+    }
+
+    public void redireccion(String username){
+        Intent intent = new Intent(this, Home.class);
+        intent.putExtra("username", username.toString());
+        startActivity(intent);
     }
 }

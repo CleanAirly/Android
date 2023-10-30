@@ -2,6 +2,7 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class Home extends AppCompatActivity {
         saludoUsuario = findViewById(R.id.txtNombreLanding);
         valorPpm = findViewById(R.id.txtPpmLanding);
         estadoAire = findViewById(R.id.txtEstadoAireLanding);
+
+        Intent intent = getIntent();
+        Log.d("TEST - INTENT", intent.getStringExtra("username"));
     }
 
     public void botonLandingPerfil(View view) {
