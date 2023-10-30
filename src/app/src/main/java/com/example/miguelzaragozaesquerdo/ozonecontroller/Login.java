@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Login extends AppCompatActivity {
 
     private SwitchCompat switchOnOff;
@@ -77,7 +80,9 @@ public class Login extends AppCompatActivity {
 
     public void botonLoginLanding(View view) {
         String username = InputNombre.getText().toString();
-        String password = InputContrasenya.getText().toString();
+
+        // HASH de la contraseña
+        String password = hashPassword(InputContrasenya.getText().toString());
 
         if(username.equals("") || password.equals("")){
             Log.d("TEST - VACIO", "");
@@ -85,8 +90,8 @@ public class Login extends AppCompatActivity {
         else{
             PeticionarioREST elPeticionario = new PeticionarioREST();
 
-            elPeticionario.hacerPeticionREST("POST", "http://10.236.40.117:3001/api/sensor/login/",
-                    "{\"email\": \"" + username + "\", \"password\": " + password + "}",
+            elPeticionario.hacerPeticionREST("POST", "http://192.168.1.36:3001/api/sensor/login/",
+                    "{\"email\": \"" + username + "\", \"password\": \"" + password + "\"}",
                     new PeticionarioREST.RespuestaREST () {
                         @Override
                         public void callback(int codigo, String cuerpo) {
@@ -96,6 +101,35 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     });
+        }
+    }
+
+    private String hashPassword(String password){
+        try{
+            // Crea una instancia de MessageDigest con el algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Convierte la contraseña en un arreglo de bytes
+            byte[] passwordBytes = password.getBytes();
+
+            // Calcula el hash
+            byte[] hashBytes = digest.digest(passwordBytes);
+
+            // Convierte el hash en una representación hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hashBytes) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+
+            Log.d("TEST - HASH", hexString.toString());
+            return hexString.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 
