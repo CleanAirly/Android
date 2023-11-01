@@ -16,12 +16,15 @@ public class Home extends AppCompatActivity {
     TextView valorPpm;
     TextView estadoAire;
 
-    private String username;
+    private DatosUsuario datosUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+        Intent intent = getIntent();
+        datosUsuario = (DatosUsuario) intent.getSerializableExtra("datosUsuario");
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setProgress(50);
@@ -30,14 +33,36 @@ public class Home extends AppCompatActivity {
         valorPpm = findViewById(R.id.txtPpmLanding);
         estadoAire = findViewById(R.id.txtEstadoAireLanding);
 
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
+        if(datosUsuario.getNombre() == null){
+            obtenerDatos(datosUsuario.getEmail());
+        } else {
+            saludoUsuario.setText("¡Bienvenido "+datosUsuario.getNombre()+"!");
+        }
     }
 
     public void botonLandingPerfil(View view) {
         Intent intent = new Intent(this, PerfilUsuario.class);
-        intent.putExtra("username", username);
+        intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 
+    public void obtenerDatos(String email){
+        PeticionarioREST elPeticionario = new PeticionarioREST();
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/usuario",
+                "{\"email\": \"" + email + "\"}",
+                new PeticionarioREST.RespuestaREST () {
+                    @Override
+                    public void callback(int codigo, String cuerpo) {
+                        Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
+                        if(cuerpo != null){
+                            String respuesta = cuerpo.replace("\"", "");
+                            datosUsuario.setNombre(respuesta);
+                            saludoUsuario.setText("¡Bienvenido "+respuesta+"!");
+                        } else{
+                            Log.d("TEST - NOMBRE", "ERROR AL OBTENER");
+                            datosUsuario.setNombre("Error al obtener");
+                        }
+                    }
+                });
+    }
 }

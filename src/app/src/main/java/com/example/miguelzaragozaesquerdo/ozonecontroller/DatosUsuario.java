@@ -1,31 +1,29 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
-public class DatosUsuario {
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+import android.view.View;
+import java.io.Serializable;
+
+public class DatosUsuario implements Serializable {
+    private transient PeticionarioREST elPeticionario = new PeticionarioREST();
     private String Email;
     private String Nombre;
     private String Telefono;
-    private String Sensor;
 
     public DatosUsuario(){}
 
-    public DatosUsuario(String email, String nombre, String telefono, String sensor){
-        this.Email = email;
-        this.Nombre = nombre;
-        this.Telefono = telefono;
-        this.Sensor = sensor;
-    }
     public String getEmail(){
         return this.Email;
     }
     public String getNombre(){
         return this.Nombre;
     }
-    public String getTelefono(){
+
+    /*public String getTelefono(){
         return this.Telefono;
-    }
-    public String getSensor(){
-        return this.Sensor;
-    }
+    }*/
 
     public void setEmail(String email){
         this.Email = email;
@@ -33,16 +31,9 @@ public class DatosUsuario {
     public void setNombre(String nombre){
         this.Nombre = nombre;
     }
-    public void setTelefono(String telefono){
+
+    /*public void setTelefono(String telefono){
         this.Telefono = telefono;
-    }
-    public void setSensor(String sensor){
-        this.Sensor = sensor;
-    }
-    public void limpiarTodo(){
-        this.Email = "";
-        this.Nombre = "";
-        this.Telefono = "";
-        this.Sensor = "";
-    }
+    }*/
+
 }

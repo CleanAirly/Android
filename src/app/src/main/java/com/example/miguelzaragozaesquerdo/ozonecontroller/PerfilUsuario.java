@@ -17,7 +17,7 @@ public class PerfilUsuario extends AppCompatActivity {
     private TextView telfUsuario;
     private TextView restablecerContrasenya;
 
-    private String username;
+    private DatosUsuario datosUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,23 +25,26 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.perfil_usuario_activity);
 
         Intent intent = getIntent();
-        username = intent.getStringExtra("username");
+        datosUsuario = (DatosUsuario) intent.getSerializableExtra("datosUsuario");
 
         nombreUsuario = findViewById(R.id.txtNombrePerfil);
         emailUsuario = findViewById(R.id.txtEmailPerfil);
         telfUsuario = findViewById(R.id.txtNumeroPerfil);
         restablecerContrasenya = findViewById(R.id.txtRestablecerPerfil);
         restablecerContrasenya.setPaintFlags(restablecerContrasenya.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+
+        nombreUsuario.setText(datosUsuario.getNombre());
+        emailUsuario.setText(datosUsuario.getEmail());
     }
 
     public void botonPerfilEditarPerfil(View view) {
         Intent intent = new Intent(this, PerfilUsuarioEditar.class);
-        intent.putExtra("username", username);
+        intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
     public void botonPerfilLanding(View view) {
         Intent intent = new Intent(this, Home.class);
-        intent.putExtra("username", username);
+        intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 

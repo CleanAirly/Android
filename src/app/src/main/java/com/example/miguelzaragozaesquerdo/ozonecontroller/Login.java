@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.CountDownLatch;
 
 public class Login extends AppCompatActivity {
 
@@ -35,13 +36,14 @@ public class Login extends AppCompatActivity {
     private EditText InputConfContrasenya;
 
     private boolean textoContrasenya;
+    private DatosUsuario datosUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        datosUsuario = new DatosUsuario();
+        checkLogedUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-
-        checkLogedUser();
 
         switchOnOff = findViewById(R.id.switchLogin);
 
@@ -112,19 +114,18 @@ public class Login extends AppCompatActivity {
     }
 
     public void botonLoginLanding(View view) {
-        String username = InputNombre.getText().toString();
+        String email = InputNombre.getText().toString();
 
         // HASH de la contraseña
         String password = hashPassword(InputContrasenya.getText().toString());
 
-        if(username.equals("") || password.equals("")){
+        if(email.equals("") || password.equals("")){
             Log.d("TEST - VACIO", "");
         }
         else{
             PeticionarioREST elPeticionario = new PeticionarioREST();
-
             elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
-                    "{\"email\": \"" + username + "\", \"password\": \"" + password + "\"}",
+                    "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
                     new PeticionarioREST.RespuestaREST () {
                         @Override
                         public void callback(int codigo, String cuerpo) {
@@ -132,19 +133,22 @@ public class Login extends AppCompatActivity {
                             if(cuerpo.equals("true")){
                                 SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("auth_token", "TEST");
-                                editor.putString("email", username);
+                                editor.putString("auth_token", password);
+                                editor.putString("email", email);
                                 editor.apply();
-                                redireccion(username);
+                                redireccion(email);
                             } else if(cuerpo.equals("false")){
-                                txtErrorContrasenya.setVisibility(View.VISIBLE);
-                                textoContrasenya = true;
+                                cambiarVisibilidad();
                             }
                         }
                     });
         }
     }
 
+    private void cambiarVisibilidad(){
+        txtErrorContrasenya.setVisibility(View.VISIBLE);
+        textoContrasenya = true;
+    }
 
 
     private String hashPassword(String password){
@@ -167,8 +171,6 @@ public class Login extends AppCompatActivity {
                 }
                 hexString.append(hex);
             }
-
-            Log.d("TEST - HASH", hexString.toString());
             return hexString.toString();
         }
         catch (NoSuchAlgorithmException e) {
@@ -181,14 +183,13 @@ public class Login extends AppCompatActivity {
         String authToken = sharedPreferences.getString("auth_token", null);
         if(authToken != null){
             redireccion(sharedPreferences.getString("email", null));
-        } else {
-            Log.d("TEST - NO LOGIN", "No hay sesion iniciada");
         }
     }
 
-    public void redireccion(String username){
+    public void redireccion(String email){
         Intent intent = new Intent(this, Home.class);
-        intent.putExtra("username", username);
+        datosUsuario.setEmail(email);
+        intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 }
