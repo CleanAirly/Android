@@ -39,7 +39,7 @@ public class DatosUsuario {
     public void setSensor(String sensor){
         this.Sensor = sensor;
     }
-    public void limpiarDatos(){
+    public void limpiarTodo(){
         this.Email = "";
         this.Nombre = "";
         this.Telefono = "";

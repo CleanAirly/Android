@@ -1,6 +1,8 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +36,15 @@ public class PerfilUsuario extends AppCompatActivity {
     }
     public void botonPerfilLanding(View view) {
         Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
+    public void botonCerrarSesion(View view){
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("auth_token");
+        editor.apply();
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 }
