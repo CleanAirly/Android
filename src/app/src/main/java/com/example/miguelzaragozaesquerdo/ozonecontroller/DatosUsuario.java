@@ -1,9 +1,4 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.view.View;
 import java.io.Serializable;
 
 public class DatosUsuario implements Serializable {

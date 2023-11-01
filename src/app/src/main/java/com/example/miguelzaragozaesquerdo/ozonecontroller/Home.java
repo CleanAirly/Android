@@ -6,8 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import com.google.gson.Gson;
 import androidx.appcompat.app.AppCompatActivity;
+import android.os.Handler;
 
 public class Home extends AppCompatActivity {
 
@@ -17,6 +18,9 @@ public class Home extends AppCompatActivity {
     TextView estadoAire;
 
     private DatosUsuario datosUsuario;
+
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +38,23 @@ public class Home extends AppCompatActivity {
         estadoAire = findViewById(R.id.txtEstadoAireLanding);
 
         if(datosUsuario.getNombre() == null){
-            obtenerDatos(datosUsuario.getEmail());
+            obtenerDatosUsuario(datosUsuario.getEmail());
         } else {
-            saludoUsuario.setText("¡Bienvenido "+datosUsuario.getNombre()+"!");
+            saludo(datosUsuario.getNombre());
         }
+
+        obtenerUltimaMedicion(datosUsuario.getEmail());
+        actualizarUltimaMedicion(5000);
     }
 
     public void botonLandingPerfil(View view) {
+        handler.removeCallbacks(runnable);
         Intent intent = new Intent(this, PerfilUsuario.class);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 
-    public void obtenerDatos(String email){
+    public void obtenerDatosUsuario(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/usuario",
                 "{\"email\": \"" + email + "\"}",
@@ -57,12 +65,55 @@ public class Home extends AppCompatActivity {
                         if(cuerpo != null){
                             String respuesta = cuerpo.replace("\"", "");
                             datosUsuario.setNombre(respuesta);
-                            saludoUsuario.setText("¡Bienvenido "+respuesta+"!");
+                            saludo(respuesta);
                         } else{
                             Log.d("TEST - NOMBRE", "ERROR AL OBTENER");
                             datosUsuario.setNombre("Error al obtener");
                         }
                     }
                 });
+    }
+
+    private void actualizarUltimaMedicion(final long intervaloMillis){
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                obtenerUltimaMedicion(datosUsuario.getEmail());
+
+                // Vuelve a programar la ejecución después del intervalo
+                handler.postDelayed(this, intervaloMillis);
+            }
+        };
+
+        // Inicia la primera ejecución después del intervalo
+        handler.postDelayed(runnable, intervaloMillis);
+    }
+
+    private void obtenerUltimaMedicion(String email){
+        PeticionarioREST elPeticionario = new PeticionarioREST();
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/medida",
+                "{\"email\": \"" + email + "\"}",
+                new PeticionarioREST.RespuestaREST () {
+                    @Override
+                    public void callback(int codigo, String cuerpo) {
+                        if(cuerpo != null){
+                            Log.d("TEST - MEDICION", ": "+cuerpo);
+                            DatosMedicion datosMedicion;
+                            Gson gson = new Gson();
+                            datosMedicion  = gson.fromJson(cuerpo, DatosMedicion.class);
+                            actualizarTextoMedicion(String.valueOf(datosMedicion.getValor()));
+                        } else{
+                            Log.d("TEST - MEDICION", "ERROR");
+                        }
+                    }
+                });
+    }
+
+    public void saludo(String texto){
+        saludoUsuario.setText("¡Bienvenido "+texto+"!");
+    }
+
+    public void actualizarTextoMedicion(String nuevoValor){
+        valorPpm.setText(nuevoValor);
     }
 }
