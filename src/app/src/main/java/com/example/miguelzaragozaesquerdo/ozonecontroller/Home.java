@@ -16,6 +16,8 @@ public class Home extends AppCompatActivity {
     TextView valorPpm;
     TextView estadoAire;
 
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,12 @@ public class Home extends AppCompatActivity {
         estadoAire = findViewById(R.id.txtEstadoAireLanding);
 
         Intent intent = getIntent();
-        Log.d("TEST - INTENT", intent.getStringExtra("username"));
+        username = intent.getStringExtra("username");
     }
 
     public void botonLandingPerfil(View view) {
         Intent intent = new Intent(this, PerfilUsuario.class);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 

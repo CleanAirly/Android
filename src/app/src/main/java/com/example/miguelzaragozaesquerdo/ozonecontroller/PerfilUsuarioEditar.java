@@ -18,10 +18,15 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
     private TextView txtErrorEmail;
     private TextView txtErrorTelf;
 
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perfil_usuario_editar_activity);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
 
         editarNombre = findViewById(R.id.nombreEditarPerfil);
         editarEmail = findViewById(R.id.emailEditarPerfil);
@@ -38,6 +43,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
 
     public void botonEditarPerfilPerfil(View view) {
         Intent intent = new Intent(this, PerfilUsuario.class);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 }
