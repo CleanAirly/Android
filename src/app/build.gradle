@@ -26,6 +26,14 @@ android {
     }
     namespace 'com.example.miguelzaragozaesquerdo.ozonecontroller'
 
+    allprojects {
+        repositories {
+            mavenCentral()
+            google()
+            maven { url 'https://jitpack.io' }
+        }
+    }
+
 }
 
 dependencies {
@@ -39,6 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation ('com.github.PhilJay:MPAndroidChart:v3.1.0')
 }
 
 configurations.all {

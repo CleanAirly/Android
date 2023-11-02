@@ -15,7 +15,7 @@ import androidx.appcompat.widget.SwitchCompat;
 public class PerfilUsuarioEditar extends AppCompatActivity {
 
     private EditText editarNombre;
-    private EditText editarEmail;
+    private TextView editarEmail;
     private EditText editarTelefono;
     private TextView txtErrorNombre;
     private TextView txtErrorEmail;
@@ -31,7 +31,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
         datosUsuario = (DatosUsuario) intent.getSerializableExtra("datosUsuario");
 
         editarNombre = findViewById(R.id.nombreEditarPerfil);
-        editarEmail = findViewById(R.id.emailEditarPerfil);
+        editarEmail = findViewById(R.id.tvEmailEditarPerfil);
         editarTelefono = findViewById(R.id.telefonoEditarPerfil);
 
         txtErrorNombre = findViewById(R.id.txtErrorNombreEditarPerfil);
@@ -42,7 +42,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
         txtErrorEmail.setVisibility(View.INVISIBLE);
         txtErrorTelf.setVisibility(View.INVISIBLE);
 
-        editarEmail.setHint(datosUsuario.getEmail());
+        editarEmail.setText(datosUsuario.getEmail());
         editarNombre.setHint(datosUsuario.getNombre());
 
         editarNombre.addTextChangedListener(new TextWatcher() {
@@ -75,6 +75,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
     public void botonGuardar(View view) {
         String nuevoNombre = editarNombre.getText().toString();
         String nuevoTlf = editarTelefono.getText().toString();
+        Log.d("TEST - BOTON", "1");
         if(nuevoNombre.equals("") && nuevoTlf.equals("")){
             txtErrorNombre.setVisibility(View.VISIBLE);
             txtErrorTelf.setVisibility(View.VISIBLE);
@@ -83,6 +84,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
         } else if(nuevoTlf.equals("")){
             txtErrorTelf.setVisibility(View.VISIBLE);
         } else {
+            Log.d("TEST - BOTON", "2");
             guardarDatos(nuevoNombre, nuevoTlf);
         }
     }
@@ -95,8 +97,10 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
 
     private void guardarDatos(String nombre, String telefono){
         telefono = "123456789";
+        Log.d("TEST - BOTON", "3");
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.47:3001/api/sensor/usuarioUpdate",
+        Log.d("TEST - BOTON", "4");
+        elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.36:3001/api/sensor/usuarioUpdate",
                 "{\"email\": \"" + datosUsuario.getEmail() + "\", \"nombre\": \"" + nombre + "\", \"telefono\": \"" + telefono + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override

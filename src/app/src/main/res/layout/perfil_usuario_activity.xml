@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorFondo">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil6"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton5" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil8"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageButton5"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil9"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageButton5"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil7"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/textView9" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil2"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circuloPerfil" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil5"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil3"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -85,7 +85,7 @@
         app:layout_constraintBottom_toTopOf="@+id/circuloPerfil2"
         app:layout_constraintStart_toEndOf="@+id/circuloPerfil" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/circuloPerfil4"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toTopOf="@+id/circuloPerfil5"
         app:layout_constraintStart_toEndOf="@+id/circuloPerfil5" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton3"
         android:layout_width="500dp"
         android:layout_height="250dp"
@@ -103,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -118,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton4"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -133,7 +133,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton5"
         android:layout_width="0dp"
         android:layout_height="40dp"

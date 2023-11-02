@@ -124,7 +124,7 @@ public class Login extends AppCompatActivity {
         }
         else{
             PeticionarioREST elPeticionario = new PeticionarioREST();
-            elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
+            elPeticionario.hacerPeticionREST("POST", "http://192.168.1.36:3001/api/sensor/login/",
                     "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
                     new PeticionarioREST.RespuestaREST () {
                         @Override
