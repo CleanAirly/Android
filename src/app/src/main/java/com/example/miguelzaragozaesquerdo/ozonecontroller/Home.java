@@ -21,6 +21,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que representa la pantalla de inicio de la aplicación.
+ * Autor: Mario Merenciano
+ */
 public class Home extends AppCompatActivity {
 
     ProgressBar progressBar;
@@ -63,6 +67,9 @@ public class Home extends AppCompatActivity {
         actualizarUltimaMedicion(5000);
     }
 
+    /**
+     * Carga datos en un gráfico de línea.
+     */
     private void cargarDatosEnGrafica() {
         // Suponiendo que tienes el siguiente JSON:
         String jsonData =
@@ -108,6 +115,9 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redirige a la pantalla de perfil del usuario.
+     */
     public void botonLandingPerfil(View view) {
         handler.removeCallbacks(runnable);
         Intent intent = new Intent(this, PerfilUsuario.class);
@@ -115,6 +125,10 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Obtiene los datos del usuario a través de una petición REST.
+     * @param email El correo electrónico del usuario.
+     */
     public void obtenerDatosUsuario(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.36:3001/api/sensor/usuario",
@@ -135,6 +149,10 @@ public class Home extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Actualiza la última medición con un intervalo específico.
+     * @param intervaloMillis El intervalo en milisegundos.
+     */
     private void actualizarUltimaMedicion(final long intervaloMillis){
         runnable = new Runnable() {
             @Override
@@ -150,6 +168,10 @@ public class Home extends AppCompatActivity {
         handler.postDelayed(runnable, intervaloMillis);
     }
 
+    /**
+     * Obtiene la última medición de los sensores a través de una petición REST.
+     * @param email El correo electrónico del usuario.
+     */
     private void obtenerUltimaMedicion(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.103:3001/api/sensor/medida",
@@ -173,10 +195,19 @@ public class Home extends AppCompatActivity {
                     }
                 });
     }
+
+    /**
+     * Muestra un saludo en la interfaz de usuario.
+     * @param texto El texto del saludo.
+     */
     public void saludo(String texto){
         saludoUsuario.setText("¡Bienvenido "+texto+"!");
     }
 
+    /**
+     * Actualiza el valor del PPM (partes por millón) en la interfaz de usuario.
+     * @param nuevoValor El nuevo valor de PPM a mostrar.
+     */
     public void actualizarTextoMedicion(String nuevoValor){
         valorPpm.setText(nuevoValor);
     }

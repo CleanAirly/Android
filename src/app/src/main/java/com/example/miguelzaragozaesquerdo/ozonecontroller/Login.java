@@ -21,20 +21,20 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Clase que representa la pantalla de inicio de sesión y registro de usuario.
+ * Autor: Mario Merenciano
+ */
 public class Login extends AppCompatActivity {
-
     private SwitchCompat switchOnOff;
-
     private TextView tvLogin;
     private TextView tvRegistrarse;
     private TextView ConfContrasenya;
     private TextView txtErrorContrasenya;
     private TextView txtErrorConfContrasenya;
-
     private EditText InputNombre;
     private EditText InputContrasenya;
     private EditText InputConfContrasenya;
-
     private boolean textoContrasenya;
     private DatosUsuario datosUsuario;
 
@@ -113,6 +113,9 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /**
+     * Maneja el evento de inicio de sesión o registro.
+     */
     public void botonLoginLanding(View view) {
         String email = InputNombre.getText().toString();
 
@@ -145,12 +148,11 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void cambiarVisibilidad(){
-        txtErrorContrasenya.setVisibility(View.VISIBLE);
-        textoContrasenya = true;
-    }
-
-
+    /**
+     * Genera un hash de la contraseña utilizando el algoritmo SHA-256.
+     * @param password La contraseña a ser hasheada.
+     * @return El hash de la contraseña.
+     */
     private String hashPassword(String password){
         try{
             // Crea una instancia de MessageDigest con el algoritmo SHA-256
@@ -178,6 +180,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /**
+     * Verifica si el usuario ya ha iniciado sesión previamente y redirige a la pantalla de inicio.
+     */
     public void checkLogedUser(){
         SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
         String authToken = sharedPreferences.getString("auth_token", null);
@@ -186,10 +191,22 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redirige a la pantalla de inicio con los datos del usuario.
+     * @param email El correo electrónico del usuario.
+     */
     public void redireccion(String email){
         Intent intent = new Intent(this, Home.class);
         datosUsuario.setEmail(email);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
+    }
+
+    /**
+     * Cambia la visibilidad de un mensaje de error.
+     */
+    private void cambiarVisibilidad(){
+        txtErrorContrasenya.setVisibility(View.VISIBLE);
+        textoContrasenya = true;
     }
 }

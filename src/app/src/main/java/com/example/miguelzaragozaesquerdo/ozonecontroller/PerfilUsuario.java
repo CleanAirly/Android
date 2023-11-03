@@ -10,13 +10,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Clase que representa la pantalla de perfil de usuario.
+ * Autor: Mario Merenciano
+ */
 public class PerfilUsuario extends AppCompatActivity {
 
     private TextView nombreUsuario;
     private TextView emailUsuario;
     private TextView telfUsuario;
     private TextView restablecerContrasenya;
-
     private DatosUsuario datosUsuario;
 
     @Override
@@ -37,17 +40,27 @@ public class PerfilUsuario extends AppCompatActivity {
         emailUsuario.setText(datosUsuario.getEmail());
     }
 
+    /**
+     * Maneja el evento de edición de perfil.
+     */
     public void botonPerfilEditarPerfil(View view) {
         Intent intent = new Intent(this, PerfilUsuarioEditar.class);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
+
+    /**
+     * Maneja el evento de regreso a la pantalla de inicio.
+     */
     public void botonPerfilLanding(View view) {
         Intent intent = new Intent(this, Home.class);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 
+    /**
+     * Maneja el evento de cierre de sesión.
+     */
     public void botonCerrarSesion(View view){
         SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
