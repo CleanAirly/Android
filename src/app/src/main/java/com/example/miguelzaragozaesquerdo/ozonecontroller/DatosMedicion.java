@@ -25,7 +25,6 @@ public class DatosMedicion {
         return valor;
     }
 
-
     /**
      * Establece el valor de la medición.
      * @param valor El valor de la medición.
