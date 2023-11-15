@@ -103,7 +103,7 @@ public class MiServicio extends Service {
         runnableCode = new Runnable() {
             @Override
             public void run() {
-                // Realiza la tarea que necesitas cada 10 segundos.
+
                 // Por ejemplo, aquí puedes llamar a una función para obtener la ubicación.
                 obtenerUbicacion();
                 inicializarBlueTooth();
