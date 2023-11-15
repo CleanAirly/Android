@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/botonDetenerBusquedaDispositivosBTLE"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="botonDetenerBusquedaDispositivosBTLEPulsado"
+        android:text="Detener búsqueda BTLE"
+        app:layout_constraintBottom_toTopOf="@+id/botonRecibir"
+        app:layout_constraintEnd_toEndOf="@+id/botonBuscarNuestroDispositivoBTLE"
+        app:layout_constraintStart_toStartOf="@+id/botonBuscarNuestroDispositivoBTLE" />
+
+    <Button
+        android:id="@+id/botonBuscarNuestroDispositivoBTLE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="botonBuscarNuestroDispositivoBTLEPulsado"
+        android:text="Buscar dispositivo  BTLE"
+        app:layout_constraintBottom_toTopOf="@+id/botonDetenerBusquedaDispositivosBTLE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/elTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/botonEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="boton_recibir_pulsado"
+        android:text="Recibir"
+        app:layout_constraintBottom_toBottomOf="@+id/botonRecibir"
+        app:layout_constraintStart_toStartOf="@+id/botonDetenerBusquedaDispositivosBTLE"
+        app:layout_constraintTop_toTopOf="@+id/botonRecibir" />
+
+    <Button
+        android:id="@+id/botonRecibir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:onClick="boton_enviar_pulsado"
+        android:text="Enviar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/botonDetenerBusquedaDispositivosBTLE" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ppm"
+        android:textColor="#333333"
+        app:layout_constraintBottom_toBottomOf="@+id/elTexto"
+        app:layout_constraintStart_toEndOf="@+id/elTexto" />
+
+    <TextView
+        android:id="@+id/laFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/laTemperatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/laFecha"
+        app:layout_constraintTop_toBottomOf="@+id/laFecha" />
+
+    <TextView
+        android:id="@+id/laLocaliz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/laTemperatura"
+        app:layout_constraintTop_toBottomOf="@+id/laTemperatura" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="16dp"
+        android:text="O"
+        android:textColor="#333333"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

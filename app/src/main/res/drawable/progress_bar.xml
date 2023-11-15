@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Círculo de fondo (predeterminado) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="ring" android:useLevel="false">
+            <solid android:color="@color/colorInputs" /> <!-- Color del círculo predeterminado (gris) -->
+        </shape>
+    </item>
+
+    <!-- Círculo de progreso (cambiar color aquí) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="ring" android:useLevel="true">
+                <solid android:color="@color/colorBotones" /> <!-- Color de la barra de progreso (rojo) -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

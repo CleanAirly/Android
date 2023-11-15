@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/circuloHome"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="-24dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome" />
+
+    <ImageView
+        android:id="@+id/circuloHome4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="-8dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintBottom_toTopOf="@+id/circuloHome5"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome5" />
+
+    <ImageView
+        android:id="@+id/circuloHome5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="-24dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton8" />
+
+    <ImageView
+        android:id="@+id/circuloHome9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6" />
+
+    <ImageView
+        android:id="@+id/circuloHome10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton6" />
+
+    <ImageView
+        android:id="@+id/circuloHome18"
+        android:layout_width="250dp"
+        android:layout_height="3dp"
+        android:background="@drawable/circulo1"
+        android:elevation="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toBottomOf="@+id/txtEstadoAireLanding" />
+
+    <ImageView
+        android:id="@+id/circuloHome11"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/circuloHome6" />
+
+    <ImageView
+        android:id="@+id/circuloHome13"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome6"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome14"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="-32dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome16"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintEnd_toStartOf="@+id/circuloHome7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome17"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circuloHome7" />
+
+    <ImageView
+        android:id="@+id/circuloHome7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/botones"
+        android:text="Ver todos los datos"
+        android:textColor="@color/colorFondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+         />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:clickable="false"
+        android:elevation="11dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton7"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton7"
+        app:layout_constraintStart_toStartOf="@+id/imageButton7"
+        app:layout_constraintTop_toTopOf="@+id/imageButton7"
+        app:srcCompat="@drawable/icono_usuario" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/botones"
+        android:elevation="10dp"
+        android:onClick="botonLandingPerfil"
+        app:layout_constraintBottom_toTopOf="@+id/txtNombreLanding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+
+    <ImageView
+        android:id="@+id/imageButton6"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rectangulos"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton6">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtNombreLanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="¡Hola, Marta!"
+        android:textColor="@color/colortxt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton7" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="11dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="¿Cómo has respirado hoy?"
+        android:textColor="@color/colortxt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toTopOf="@+id/imageButton6" />
+
+    <TextView
+        android:id="@+id/txtEstadoAireLanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="11dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Bastante bien"
+        android:textColor="@color/colortxt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/circuloHome18"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <TextView
+        android:id="@+id/txtPpmLanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="11dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="70 ppm"
+        android:textColor="@color/colortxt"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/circle_shape"
+        android:elevation="11dp"
+        android:indeterminate="false"
+        android:max="500"
+        android:progress="500"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        app:layout_constraintBottom_toTopOf="@+id/txtEstadoAireLanding"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="11dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Datos a lo largo del dia (ppm/h)"
+
+        android:textColor="@color/colortxt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6"
+        app:layout_constraintTop_toBottomOf="@+id/circuloHome18" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
