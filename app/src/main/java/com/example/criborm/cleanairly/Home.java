@@ -2,6 +2,7 @@ package com.example.criborm.cleanairly;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
@@ -11,6 +12,7 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -128,15 +130,34 @@ public class Home extends AppCompatActivity {
         obtenerUltimaMedicion(datosUsuario.getEmail());
 
         actualizarUltimaMedicion(10000);
-        activarServicio();
+
+        // Luego, antes de iniciar el servicio, puedes verificar si está activo
+        if (!isServicioActivo()) {
+            activarServicio();
+        } else {
+            // El servicio ya está activo, realiza alguna acción o muestra un mensaje
+            // por ejemplo, Log.d("Servicio", "El servicio ya está activo");
+        }
+
+        /**
+         * Carga datos en un gráfico de línea.
+         */
+
 
     }
 
+    private boolean isServicioActivo() {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        if (manager != null) {
+            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+                if (MiServicio.class.getName().equals(service.service.getClassName())) {
+                    return true; // El servicio está activo
+                }
+            }
+        }
+        return false; // El servicio no está activo
+    }
 
-
-     /**
-     * Carga datos en un gráfico de línea.
-     */
 
     private void cargarDatosEnGrafica() {
         // Suponiendo que tienes el siguiente JSON:
@@ -203,7 +224,7 @@ public class Home extends AppCompatActivity {
      */
     public void obtenerDatosUsuario(String email) {
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/usuario",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/usuario",
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST() {
                     @Override
@@ -251,7 +272,7 @@ public class Home extends AppCompatActivity {
 
     private void obtenerUltimaMedicion(String email) {
         com.example.criborm.cleanairly.PeticionarioREST elPeticionario = new com.example.criborm.cleanairly.PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/medida",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/medida",
                 "{\"email\": \"" + email + "\"}",
                 new com.example.criborm.cleanairly.PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)
@@ -285,7 +306,7 @@ public class Home extends AppCompatActivity {
     }
     private void obtenerUltimasMediciones(String email, int cantidadMediciones) {
         com.example.criborm.cleanairly.PeticionarioREST elPeticionario = new com.example.criborm.cleanairly.PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor",
                 "{\"email\": \"" + email + "\"}",
                 new com.example.criborm.cleanairly.PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)

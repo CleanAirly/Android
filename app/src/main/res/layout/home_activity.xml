@@ -156,6 +156,7 @@
         android:background="@drawable/botones"
         android:text="Ver todos los datos"
         android:textColor="@color/colorFondo"
+        android:onClick="medidaExcesiva"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"

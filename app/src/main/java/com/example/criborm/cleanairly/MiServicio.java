@@ -50,6 +50,7 @@ public class MiServicio extends Service {
     private Location localizacion;
     private int major;
     private int minor;
+    private double distanciaSensor;
     // -------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
     private static final String ETIQUETA_LOG = ">>>>";
@@ -66,7 +67,8 @@ public class MiServicio extends Service {
     private Runnable runnableCode;
     // -------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------
-
+    private String resultadoGuardar = "ini";
+    private String resultadoGuardarAnterior = "";
 
     @Override
     public void onCreate() {
@@ -87,14 +89,13 @@ public class MiServicio extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this, CANAL_ID) .setContentTitle("Recibiendo medidas...")
-                .setContentText("Recuerde mantener el sensor con usted") .setSmallIcon(R.drawable.ic_baseline_cloud_done_24);
+        NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this, CANAL_ID) .setContentTitle("Inicializando...")
+                .setContentText("\"Tu sensor se esta inicializando\"") .setSmallIcon(R.drawable.ic_baseline_cloud_download_24);
         startForeground(NOTIFICACION_ID, notificacion.build());
         notificationManager.notify(NOTIFICACION_ID, notificacion.build());
         Log.d("SERVICIO", "onStartCommand: ");
         datosUsuario = (DatosUsuario) intent.getSerializableExtra("datosUsuario");
         obtenerUbicacion();
-
 
 
 
@@ -109,6 +110,50 @@ public class MiServicio extends Service {
                 inicializarBlueTooth();
                 buscarEsteDispositivoBTLE("GTI-3A-CRISTIAN");
                 guardarUltimaMedicion(intent.getExtras().getString("email"));
+                Log.d("bool", resultadoGuardar);
+
+
+
+                if(resultadoGuardar.equals("true") && !resultadoGuardarAnterior.equals("true") && major > 500){
+                    notificacion.setContentTitle("Medida demasiado alta");
+                    notificacion.setContentText("Usted está expuesto a una cantidad muy elevada de ozono");
+                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_done_24);
+                    notificationManager.notify(NOTIFICACION_ID, notificacion.build());
+                    resultadoGuardarAnterior = "true";
+                }
+                else if(resultadoGuardar.equals("true") && !resultadoGuardarAnterior.equals("true")){
+                        notificacion.setContentTitle("Funcionando correctamente");
+                        notificacion.setContentText("Tu sensor funciona correctamente");
+                        notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_done_24);
+                        notificationManager.notify(NOTIFICACION_ID, notificacion.build());
+                        resultadoGuardarAnterior = "true";
+                }
+
+                else if(resultadoGuardar.equals("ini")&&!resultadoGuardarAnterior.equals("ini")){
+                    notificacion.setContentTitle("Inicializando...");
+                    notificacion.setContentText("Tu sensor se esta inicializando");
+                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_download_24);
+                    notificationManager.notify(NOTIFICACION_ID, notificacion.build());
+                    resultadoGuardarAnterior = "ini";
+                }
+                else if(resultadoGuardar.equals("false")&&!resultadoGuardarAnterior.equals("false")){
+                    notificacion.setContentTitle("Sensor apagado");
+                    notificacion.setContentText("Comprueba el nivel de carga de tu sensor");
+                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_off_24);
+                    notificationManager.notify(NOTIFICACION_ID, notificacion.build());
+                    resultadoGuardarAnterior = "false";
+                }
+                else if(distanciaSensor > 100){
+                    notificacion.setContentTitle("Sensor muy lejos");
+                    notificacion.setContentText("El sensor está muy lejos de tu móvil");
+                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_off_24);
+                    notificationManager.notify(NOTIFICACION_ID, notificacion.build());
+                    resultadoGuardarAnterior = "false";
+                }
+
+
+
+
 
                 // Ejecuta este Runnable nuevamente después de 10 segundos.
                 handler.postDelayed(this, 10000); // 10000 milisegundos = 10 segundos
@@ -150,16 +195,6 @@ public class MiServicio extends Service {
 
 
 
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -173,38 +208,44 @@ public class MiServicio extends Service {
         return null;
     }
 
+    int majorAnterior;
     private void guardarUltimaMedicion(String email) {
         if(localizacion != null){
-            com.example.criborm.cleanairly.PeticionarioREST elPeticionario = new com.example.criborm.cleanairly.PeticionarioREST();
-            elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/value",
-                    "{\"email\": \"" + email + "\"" + "," +
-                            "\"valor\": \"" + major + "\"" + "," +
-                            "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +
-                            "\"idContaminante\": \"" + "1" + "\"}",
-                    new com.example.criborm.cleanairly.PeticionarioREST.RespuestaREST() {
-                        @Override
-                        public void callback(int codigo, String cuerpo) {
-                            if (cuerpo != null) {
-                                Log.d("TEST - ENVIAR", ": " + cuerpo);
-                                //com.example.criborm.cleanairly.DatosMedicion datosMedicion;
-                                //Gson gson = new Gson();
-                                //datosMedicion  = gson.fromJson(cuerpo, com.example.criborm.cleanairly.DatosMedicion.class);
-                                try {
-                                    //datosMedicion.setLugar("cuenca");
-                                    //datosMedicion.setValor(1000);
-                                } catch (Exception e) {
-                                    Log.d("TEST - MEDICION", "ERROR: " + e);
+            Log.d("TEST-ENVIAR", "guardarUltimaMedicion: ");
+            if(major != 0 && major !=majorAnterior){
+                com.example.criborm.cleanairly.PeticionarioREST elPeticionario = new com.example.criborm.cleanairly.PeticionarioREST();
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/value",
+                        "{\"email\": \"" + email + "\"" + "," +
+                                "\"valor\": \"" + major + "\"" + "," +
+                                "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +
+                                "\"idContaminante\": \"" + "1" + "\"}",
+                        new com.example.criborm.cleanairly.PeticionarioREST.RespuestaREST() {
+                            @Override
+                            public void callback(int codigo, String cuerpo) {
+                                if (cuerpo != null) {
+                                    Log.d("TEST - ENVIAR", ": " + cuerpo);
+                                    if(major == majorAnterior){
+                                        resultadoGuardar = "false";
+                                    }else{
+                                        resultadoGuardar = "true";
+                                    }
+                                    majorAnterior = major;
+                                } else {
+                                    Log.d("TEST - MEDICION", "ERROR");
+                                    resultadoGuardar = "false";
                                 }
-                            } else {
-                                Log.d("TEST - MEDICION", "ERROR");
                             }
-                        }
-                    });
+                        });
+            }
+            else{
+                resultadoGuardar = "false";
+            }
+
         }
         else{
             obtenerUbicacion();
+            resultadoGuardar = "ini";
         }
-
     }
 
 
@@ -261,6 +302,8 @@ public class MiServicio extends Service {
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
+
+
     private void mostrarInformacionDispositivoBTLE(ScanResult resultado) {
 
         BluetoothDevice bluetoothDevice = resultado.getDevice();
@@ -291,7 +334,8 @@ public class MiServicio extends Service {
         }*/
 
         // Log.d(ETIQUETA_LOG, " dirección = " + bluetoothDevice.getAddress());
-        // Log.d(ETIQUETA_LOG, " rssi = " + rssi);
+         //Log.d(ETIQUETA_LOG, " rssi = " + rssi);
+         distanciaSensor = (-1*rssi);
 
         // Log.d(ETIQUETA_LOG, " bytes = " + new String(bytes));
         // Log.d(ETIQUETA_LOG, " bytes (" + bytes.length + ") = " + Utilidades.bytesToHexString(bytes));
