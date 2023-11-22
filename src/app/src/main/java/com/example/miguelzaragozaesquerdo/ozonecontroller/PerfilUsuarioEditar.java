@@ -98,7 +98,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
         Log.d("TEST - BOTON", "3");
         PeticionarioREST elPeticionario = new PeticionarioREST();
         Log.d("TEST - BOTON", "4");
-        elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.36:3001/api/sensor/usuarioUpdate",
+        elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.47:3001/api/sensor/usuarioUpdate",
                 "{\"email\": \"" + datosUsuario.getEmail() + "\", \"nombre\": \"" + nombre + "\", \"telefono\": \"" + telefono + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override

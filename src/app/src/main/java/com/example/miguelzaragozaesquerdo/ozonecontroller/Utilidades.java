@@ -1,14 +1,108 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
 
+import android.util.Log;
+
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
+import java.util.Random;
 import java.util.UUID;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 // -----------------------------------------------------------------------------------
 // @author: Jordi Bataller i Mascarell
 // -----------------------------------------------------------------------------------
 public class Utilidades {
+
+    public static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
+        String remitente = "contact.cleanairly@gmail.com";
+        String claveemail = "zxmz bnux jraj rtwi";
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Properties props = System.getProperties();
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.user", remitente);
+                props.put("mail.smtp.clave", claveemail);
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.port", "587");
+
+                Session session = Session.getDefaultInstance(props);
+                MimeMessage message = new MimeMessage(session);
+
+                try {
+                    message.setFrom(new InternetAddress(remitente));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+                    message.setSubject(asunto);
+                    message.setText(cuerpo);
+
+                    Transport transport = session.getTransport("smtp");
+                    transport.connect("smtp.gmail.com", remitente, claveemail);
+                    transport.sendMessage(message, message.getAllRecipients());
+                    transport.close();
+                    Log.d("TEST - CORREO", "ENVIADO");
+                } catch (MessagingException me) {
+                    Log.d("TEST - CORREO", "ERROR");
+                    me.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public static String codigoAleatorio(){
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+        Random rnd = new Random();
+        StringBuilder codigo = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            codigo.append(caracteres.charAt(rnd.nextInt(caracteres.length())));
+        }
+
+        return codigo.toString();
+    }
+
+    /**
+     * Genera un hash de la contraseña utilizando el algoritmo SHA-256.
+     * @param password La contraseña a ser hasheada.
+     * @return El hash de la contraseña.
+     */
+    public static String hashPassword(String password){
+        try{
+            // Crea una instancia de MessageDigest con el algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Convierte la contraseña en un arreglo de bytes
+            byte[] passwordBytes = password.getBytes();
+
+            // Calcula el hash
+            byte[] hashBytes = digest.digest(passwordBytes);
+
+            // Convierte el hash en una representación hexadecimal
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hashBytes) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // -------------------------------------------------------------------------------
     // -------------------------------------------------------------------------------

@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Nombre de usuario:"
+        android:text="Correo electrónico:"
         android:textColor="@color/colortxt"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/nombreUsuarioLogin"

@@ -8,6 +8,8 @@ import java.io.Serializable;
 public class DatosUsuario implements Serializable {
     private String Email;
     private String Nombre;
+    private String Password;
+    private String Telefono;
 
     /**
      * Constructor por defecto de la clase DatosUsuario.
@@ -31,6 +33,22 @@ public class DatosUsuario implements Serializable {
     }
 
     /**
+     * Obtiene la password del usuario.
+     * @return La password del usuario.
+     */
+    public String getPassword(){
+        return this.Password;
+    }
+
+    /**
+     * Obtiene el telefono del usuario.
+     * @return El telefono del usuario.
+     */
+    public String getTelefono(){
+        return this.Telefono;
+    }
+
+    /**
      * Establece el correo electrónico del usuario.
      * @param email El correo electrónico del usuario.
      */
@@ -44,5 +62,21 @@ public class DatosUsuario implements Serializable {
      */
     public void setNombre(String nombre){
         this.Nombre = nombre;
+    }
+
+    /**
+     * Establece el password del usuario.
+     * @param password El password del usuario.
+     */
+    public void setPassword(String password){
+        this.Password = password;
+    }
+
+    /**
+     * Establece el telefono del usuario.
+     * @param telefono El telefono del usuario.
+     */
+    public void setTelefono(String telefono){
+        this.Telefono = telefono;
     }
 }

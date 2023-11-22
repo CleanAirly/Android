@@ -131,7 +131,7 @@ public class Home extends AppCompatActivity {
      */
     public void obtenerDatosUsuario(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.36:3001/api/sensor/usuario",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/usuario",
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override
@@ -174,7 +174,7 @@ public class Home extends AppCompatActivity {
      */
     private void obtenerUltimaMedicion(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.103:3001/api/sensor/medida",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/medida",
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override

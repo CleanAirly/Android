@@ -3,6 +3,7 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,7 +22,16 @@ import androidx.core.content.ContextCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.CountDownLatch;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * Clase que representa la pantalla de inicio de sesión y registro de usuario.
@@ -37,6 +49,8 @@ public class Login extends AppCompatActivity {
     private EditText InputConfContrasenya;
     private boolean textoContrasenya;
     private DatosUsuario datosUsuario;
+    private Button botonIniciar;
+    private String codigoVerificacionRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +60,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login_activity);
 
         switchOnOff = findViewById(R.id.switchLogin);
+
+        botonIniciar = findViewById(R.id.botonAccederLogin);
 
         tvLogin = findViewById(R.id.txtLogin);
         tvRegistrarse = findViewById(R.id.txtRegistrarse);
@@ -64,9 +80,11 @@ public class Login extends AppCompatActivity {
 
         switchOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (switchOnOff.isChecked()) {
+                Log.d("TEST","REGISTRO");
                 Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
                 ConfContrasenya.startAnimation(fadeIn);
                 InputConfContrasenya.startAnimation(fadeIn);
+                botonIniciar.setText("CONTINUAR");
 
                 tvLogin.setTextColor(ContextCompat.getColor(this, R.color.colortxt));
                 tvRegistrarse.setTextColor(ContextCompat.getColor(this, R.color.colorFondo));
@@ -74,6 +92,7 @@ public class Login extends AppCompatActivity {
                 InputConfContrasenya.setVisibility(View.VISIBLE);
                 txtErrorContrasenya.setVisibility(View.GONE);
             } else {
+                botonIniciar.setText("ACCEDER");
                 Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
                 ConfContrasenya.startAnimation(fadeOut);
                 InputConfContrasenya.startAnimation(fadeOut);
@@ -85,7 +104,6 @@ public class Login extends AppCompatActivity {
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.VISIBLE);
             }
         });
-
         InputNombre.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,71 +131,79 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    public void registroActivity(View view){
+        Intent intent = new Intent(this, RegistroActivity.class);
+        startActivity(intent);
+    }
+
     /**
      * Maneja el evento de inicio de sesión o registro.
      */
     public void botonLoginLanding(View view) {
-        String email = InputNombre.getText().toString();
 
-        // HASH de la contraseña
-        String password = hashPassword(InputContrasenya.getText().toString());
+        if(!InputNombre.getText().toString().equals("")|| !InputContrasenya.getText().toString().equals("")){
 
-        if(email.equals("") || password.equals("")){
-            Log.d("TEST - VACIO", "");
+            String email = InputNombre.getText().toString();
+            String password = Utilidades.hashPassword(InputContrasenya.getText().toString());
+
+            // REGISTRO SELECCIONADO
+            if(switchOnOff.isChecked()){
+                PeticionarioREST elPeticionario = new PeticionarioREST();
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate",
+                        "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
+                        new PeticionarioREST.RespuestaREST () {
+                            @Override
+                            public void callback(int codigo, String cuerpo) {
+
+                                // SI EL CORREO EXISTE EN LA BASE DE DATOS
+                                if(cuerpo.replace("\"", "").equals("existe")){
+                                    Log.d("TEST - REGISTRO", "EXISTE");
+                                }
+                                // SI NO EXISTE EL CORREO EN LA BASE DE DATOS
+                                else {
+                                    Log.d("TEST","ENVIAR CORREO");
+                                    codigoVerificacionRegistro = Utilidades.codigoAleatorio();
+                                    Utilidades.enviarConGMail(email, "Completa tu registro", "CleanAirly - Tu código de registro es "+codigoVerificacionRegistro+". Introducelo para comprobar que este es tu correo.");
+                                    intent(codigoVerificacionRegistro, email, password);
+                                }
+                            }
+                });
+            }
+
+            // LOGIN SELECCIONADO
+            else {
+                PeticionarioREST elPeticionario = new PeticionarioREST();
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
+                        "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
+                        new PeticionarioREST.RespuestaREST () {
+                            @Override
+                            public void callback(int codigo, String cuerpo) {
+                                Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
+                                if(cuerpo.equals("true")){
+                                    SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("auth_token", password);
+                                    editor.putString("email", email);
+                                    editor.apply();
+                                    redireccion(email);
+                                } else if(cuerpo.equals("false")){
+                                    cambiarVisibilidad();
+                                }
+                            }
+                        });
+            }
         }
         else{
-            PeticionarioREST elPeticionario = new PeticionarioREST();
-            elPeticionario.hacerPeticionREST("POST", "http://192.168.1.36:3001/api/sensor/login/",
-                    "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
-                    new PeticionarioREST.RespuestaREST () {
-                        @Override
-                        public void callback(int codigo, String cuerpo) {
-                            Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
-                            if(cuerpo.equals("true")){
-                                SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("auth_token", password);
-                                editor.putString("email", email);
-                                editor.apply();
-                                redireccion(email);
-                            } else if(cuerpo.equals("false")){
-                                cambiarVisibilidad();
-                            }
-                        }
-                    });
+            Log.d("TEST - VACIO", "");
         }
     }
 
-    /**
-     * Genera un hash de la contraseña utilizando el algoritmo SHA-256.
-     * @param password La contraseña a ser hasheada.
-     * @return El hash de la contraseña.
-     */
-    private String hashPassword(String password){
-        try{
-            // Crea una instancia de MessageDigest con el algoritmo SHA-256
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
-            // Convierte la contraseña en un arreglo de bytes
-            byte[] passwordBytes = password.getBytes();
-
-            // Calcula el hash
-            byte[] hashBytes = digest.digest(passwordBytes);
-
-            // Convierte el hash en una representación hexadecimal
-            StringBuilder hexString = new StringBuilder();
-            for (byte hashByte : hashBytes) {
-                String hex = Integer.toHexString(0xff & hashByte);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        }
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+    private void intent(String codigo, String email, String password){
+        Intent intent = new Intent(this, RegistroActivity.class);
+        intent.putExtra("codigoVerificacionRegistro", codigo);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+        startActivity(intent);
     }
 
     /**
