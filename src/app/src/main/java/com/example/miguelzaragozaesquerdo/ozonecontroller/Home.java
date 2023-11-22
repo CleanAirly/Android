@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Handler;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -138,9 +139,15 @@ public class Home extends AppCompatActivity {
                     public void callback(int codigo, String cuerpo) {
                         Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
                         if(cuerpo != null){
-                            String respuesta = cuerpo.replace("\"", "");
-                            datosUsuario.setNombre(respuesta);
-                            saludo(respuesta);
+                            String nombre = "";
+                            try {
+                                JSONObject jsonObject = new JSONObject(cuerpo);
+                                nombre = jsonObject.getString("nombre");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            datosUsuario.setNombre(nombre);
+                            saludo(nombre);
                         } else{
                             Log.d("TEST - NOMBRE", "ERROR AL OBTENER");
                             datosUsuario.setNombre("Error al obtener");
