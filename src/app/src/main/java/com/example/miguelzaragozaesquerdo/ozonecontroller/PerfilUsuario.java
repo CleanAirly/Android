@@ -38,6 +38,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
         nombreUsuario.setText(datosUsuario.getNombre());
         emailUsuario.setText(datosUsuario.getEmail());
+        telfUsuario.setText(datosUsuario.getTelefono());
     }
 
     /**

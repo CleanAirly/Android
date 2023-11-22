@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class DatosUsuario implements Serializable {
     private String Email;
     private String Nombre;
-    private String Password;
+    private String IdSonda;
     private String Telefono;
 
     /**
@@ -33,11 +33,11 @@ public class DatosUsuario implements Serializable {
     }
 
     /**
-     * Obtiene la password del usuario.
-     * @return La password del usuario.
+     * Obtiene la id sonda del usuario.
+     * @return La id sonda del usuario.
      */
-    public String getPassword(){
-        return this.Password;
+    public String getIdSonda(){
+        return this.IdSonda;
     }
 
     /**
@@ -65,11 +65,11 @@ public class DatosUsuario implements Serializable {
     }
 
     /**
-     * Establece el password del usuario.
-     * @param password El password del usuario.
+     * Establece el idSonda del usuario.
+     * @param idSonda El password del usuario.
      */
-    public void setPassword(String password){
-        this.Password = password;
+    public void setIdSonda(String idSonda){
+        this.IdSonda = idSonda;
     }
 
     /**

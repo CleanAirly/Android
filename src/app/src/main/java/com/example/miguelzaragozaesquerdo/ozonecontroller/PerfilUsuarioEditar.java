@@ -42,6 +42,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
 
         editarEmail.setText(datosUsuario.getEmail());
         editarNombre.setHint(datosUsuario.getNombre());
+        editarTelefono.setHint(datosUsuario.getTelefono());
 
         editarNombre.addTextChangedListener(new TextWatcher() {
             @Override
@@ -94,10 +95,7 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
     }
 
     private void guardarDatos(String nombre, String telefono){
-        telefono = "123456789";
-        Log.d("TEST - BOTON", "3");
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        Log.d("TEST - BOTON", "4");
         elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.47:3001/api/sensor/usuarioUpdate",
                 "{\"email\": \"" + datosUsuario.getEmail() + "\", \"nombre\": \"" + nombre + "\", \"telefono\": \"" + telefono + "\"}",
                 new PeticionarioREST.RespuestaREST () {

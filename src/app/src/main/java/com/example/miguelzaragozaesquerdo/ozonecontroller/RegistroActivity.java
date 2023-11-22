@@ -271,7 +271,7 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     public void crearUsuarioBaseDatos(View view){
-        codigoSensor = "12345";
+        codigoSensor = "123745";
         JSONObject jsonObject = new JSONObject();
         String jsonString = "";
         try {

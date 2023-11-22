@@ -139,15 +139,15 @@ public class Home extends AppCompatActivity {
                     public void callback(int codigo, String cuerpo) {
                         Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
                         if(cuerpo != null){
-                            String nombre = "";
                             try {
                                 JSONObject jsonObject = new JSONObject(cuerpo);
-                                nombre = jsonObject.getString("nombre");
+                                datosUsuario.setNombre(jsonObject.getString("nombre"));
+                                datosUsuario.setTelefono(jsonObject.getString("telefono"));
+                                datosUsuario.setIdSonda(jsonObject.getString("idSonda"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            datosUsuario.setNombre(nombre);
-                            saludo(nombre);
+                            saludo(datosUsuario.getNombre());
                         } else{
                             Log.d("TEST - NOMBRE", "ERROR AL OBTENER");
                             datosUsuario.setNombre("Error al obtener");
