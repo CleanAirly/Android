@@ -29,18 +29,14 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
         datosUsuario = (DatosUsuario) intent.getSerializableExtra("datosUsuario");
 
         editarNombre = findViewById(R.id.nombreEditarPerfil);
-        editarEmail = findViewById(R.id.tvEmailEditarPerfil);
         editarTelefono = findViewById(R.id.telefonoEditarPerfil);
 
         txtErrorNombre = findViewById(R.id.txtErrorNombreEditarPerfil);
-        txtErrorEmail = findViewById(R.id.txtErrorEmailEditarPerfil);
         txtErrorTelf = findViewById(R.id.txtErrorTelfEditarPerfil);
 
         txtErrorNombre.setVisibility(View.INVISIBLE);
-        txtErrorEmail.setVisibility(View.INVISIBLE);
         txtErrorTelf.setVisibility(View.INVISIBLE);
 
-        editarEmail.setText(datosUsuario.getEmail());
         editarNombre.setHint(datosUsuario.getNombre());
         editarTelefono.setHint(datosUsuario.getTelefono());
 

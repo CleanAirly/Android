@@ -54,7 +54,7 @@
         android:background="@drawable/circulo2"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton8" />
+    />
 
     <ImageView
         android:id="@+id/circuloHome9"
@@ -80,7 +80,8 @@
         android:id="@+id/circuloHome18"
         android:layout_width="250dp"
         android:layout_height="3dp"
-        android:background="@drawable/circulo1"
+        android:outlineProvider="none"
+        android:background="@drawable/circulo3"
         android:elevation="11dp"
         app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="@+id/imageButton6"
@@ -144,10 +145,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/circulo1"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton8"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button6"
@@ -314,4 +314,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageButton6"
         app:layout_constraintTop_toBottomOf="@+id/circuloHome18" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="17dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:clickable="false"
+        android:elevation="13dp"
+        android:onClick="botonAbrirInfomacion"
+        app:layout_constraintStart_toEndOf="@+id/txtEstadoAireLanding"
+        app:layout_constraintTop_toTopOf="@+id/txtEstadoAireLanding"
+        app:srcCompat="@drawable/icono_informacion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

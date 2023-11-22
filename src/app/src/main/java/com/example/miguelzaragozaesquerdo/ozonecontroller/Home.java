@@ -126,6 +126,11 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void botonAbrirInfomacion(View view) {
+        Intent intent = new Intent(this, Informacion.class);
+        intent.putExtra("datosUsuario", datosUsuario);
+        startActivity(intent);
+    }
     /**
      * Obtiene los datos del usuario a través de una petición REST.
      * @param email El correo electrónico del usuario.
