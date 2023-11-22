@@ -1,5 +1,6 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PerfilUsuarioEditar extends AppCompatActivity {
@@ -68,26 +71,44 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
     }
 
     public void botonGuardar(View view) {
-        String nuevoNombre = editarNombre.getText().toString();
-        String nuevoTlf = editarTelefono.getText().toString();
-        Log.d("TEST - BOTON", "1");
-        if(nuevoNombre.equals("") && nuevoTlf.equals("")){
-            txtErrorNombre.setVisibility(View.VISIBLE);
-            txtErrorTelf.setVisibility(View.VISIBLE);
-        } else if(nuevoNombre.equals("")){
-            txtErrorNombre.setVisibility(View.VISIBLE);
-        } else if(nuevoTlf.equals("")){
-            txtErrorTelf.setVisibility(View.VISIBLE);
-        } else {
-            Log.d("TEST - BOTON", "2");
-            guardarDatos(nuevoNombre, nuevoTlf);
-        }
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmar Cambios")
+                .setMessage("¿Estás seguro de que quieres guardar los cambios?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String nuevoNombre = editarNombre.getText().toString();
+                        String nuevoTlf = editarTelefono.getText().toString();
+                        if (nuevoNombre.equals("") && nuevoTlf.equals("")) {
+                            txtErrorNombre.setVisibility(View.VISIBLE);
+                            txtErrorTelf.setVisibility(View.VISIBLE);
+                        } else if (nuevoNombre.equals("")) {
+                            txtErrorNombre.setVisibility(View.VISIBLE);
+                        } else if (nuevoTlf.equals("")) {
+                            txtErrorTelf.setVisibility(View.VISIBLE);
+                        } else {
+                            guardarDatos(nuevoNombre, nuevoTlf);
+                        }
+                    }
+                })
+                .setNegativeButton("No", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
-    public void botonVolverAtras(View view){
-        Intent intent = new Intent(this, PerfilUsuario.class);
-        intent.putExtra("datosUsuario", datosUsuario);
-        startActivity(intent);
+    public void botonVolverAtras(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle("Descartar Cambios")
+                .setMessage("¿Estás seguro de que quieres descartar los cambios?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(PerfilUsuarioEditar.this, PerfilUsuario.class);
+                        intent.putExtra("datosUsuario", datosUsuario);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private void guardarDatos(String nombre, String telefono){
