@@ -208,4 +208,9 @@ public class Login extends AppCompatActivity {
         txtErrorContrasenya.setVisibility(View.VISIBLE);
         textoContrasenya = true;
     }
+
+    public void escanearQR(View v){
+        Intent intent = new Intent(this, ScanActivity.class);
+        startActivity(intent);
+    }
 }
