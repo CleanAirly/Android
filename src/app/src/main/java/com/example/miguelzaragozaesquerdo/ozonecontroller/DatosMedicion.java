@@ -9,7 +9,7 @@ public class DatosMedicion {
     private int idMedicion;
     private String instante;
     private String lugar;
-    private double valor;
+    private int valor;
     private int idContaminante;
 
     /**
@@ -21,7 +21,7 @@ public class DatosMedicion {
      * Obtiene el valor de la medición.
      * @return El valor de la medición.
      */
-    public double getValor() {
+    public int getValor() {
         return valor;
     }
 
@@ -29,7 +29,7 @@ public class DatosMedicion {
      * Establece el valor de la medición.
      * @param valor El valor de la medición.
      */
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 }

@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
 
 		   */
 
-        elPeticionario.hacerPeticionREST("GET",  "http://192.168.43.129:3001/api/sensor/", null,
+        elPeticionario.hacerPeticionREST("GET",  "http://192.168.1.47:3001/api/sensor/", null,
 
                 new PeticionarioREST.RespuestaREST () {
                     @Override
@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
 public void botonEnviarDato(View quien){
 
     PeticionarioREST elPeticionario = new PeticionarioREST();
-    elPeticionario.hacerPeticionREST("POST", "http://192.168.43.129:3001/api/sensor/value/",
+    elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/value/",
             "{\"valor\":\"" + textoEnviar.getText().toString() + "\"}",
             new PeticionarioREST.RespuestaREST () {
                 @Override

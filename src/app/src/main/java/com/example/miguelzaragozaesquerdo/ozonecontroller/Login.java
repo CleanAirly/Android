@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class Login extends AppCompatActivity {
     private DatosUsuario datosUsuario;
     private Button botonIniciar;
     private String codigoVerificacionRegistro;
+    private CheckBox checkBoxPrivacidad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class Login extends AppCompatActivity {
         ConfContrasenya = findViewById(R.id.txtConfContrasenya);
         txtErrorContrasenya = findViewById(R.id.txtErrorContrasenyaLogin);
         txtErrorConfContrasenya = findViewById(R.id.txtErrorConfContrasenyaLogin);
+        checkBoxPrivacidad = findViewById(R.id.checkBoxPrivacidad);
 
         InputNombre = findViewById(R.id.nombreUsuarioLogin);
         InputContrasenya = findViewById(R.id.ContrasenyaUsuarioLogin);
@@ -77,6 +80,7 @@ public class Login extends AppCompatActivity {
         InputConfContrasenya.setVisibility(View.GONE);
         txtErrorContrasenya.setVisibility(View.INVISIBLE);
         txtErrorConfContrasenya.setVisibility(View.GONE);
+        checkBoxPrivacidad.setVisibility(View.GONE);
 
         switchOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (switchOnOff.isChecked()) {
@@ -91,6 +95,7 @@ public class Login extends AppCompatActivity {
                 ConfContrasenya.setVisibility(View.VISIBLE);
                 InputConfContrasenya.setVisibility(View.VISIBLE);
                 txtErrorContrasenya.setVisibility(View.GONE);
+                checkBoxPrivacidad.setVisibility(View.VISIBLE);
             } else {
                 botonIniciar.setText("ACCEDER");
                 Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
@@ -101,9 +106,21 @@ public class Login extends AppCompatActivity {
                 tvRegistrarse.setTextColor(ContextCompat.getColor(this, R.color.colortxt));
                 ConfContrasenya.setVisibility(View.GONE);
                 InputConfContrasenya.setVisibility(View.GONE);
+                checkBoxPrivacidad.setVisibility(View.GONE);
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.VISIBLE);
             }
         });
+
+        RegistroPopUpPrivacidad dialog = new RegistroPopUpPrivacidad();
+
+        checkBoxPrivacidad.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                dialog.show(getSupportFragmentManager(), "RegistroPopUpPrivacidad");
+            } else {
+
+            }
+        });
+
         InputNombre.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -129,11 +146,6 @@ public class Login extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
-    }
-
-    public void registroActivity(View view){
-        Intent intent = new Intent(this, RegistroActivity.class);
-        startActivity(intent);
     }
 
     /**

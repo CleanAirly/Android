@@ -265,68 +265,17 @@ public class RegistroActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mostrarButton(btnFinalizarRegistro, 300);
+                iniciarScanQR();
             }
         }, 1000);
     }
 
-    public void crearUsuarioBaseDatos(View view){
-        codigoSensor = "2561";
-        JSONObject jsonObject = new JSONObject();
-        String jsonString = "";
-        try {
-            jsonObject.put("email", email);
-            jsonObject.put("password", password);
-            jsonObject.put("nombre", nombre);
-            jsonObject.put("telefono", telefono);
-            jsonObject.put("idSonda", codigoSensor);
-            jsonObject.put("verificacion", false);
-            jsonString = jsonObject.toString();
-        } catch (JSONException e) { e.printStackTrace(); }
-        PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate", jsonString,
-                new PeticionarioREST.RespuestaREST () {
-                    @Override
-                    public void callback(int codigo, String cuerpo) {
-                        Log.d("TEST - FIN REGISTRO", codigo+" "+cuerpo);
-                        // SI EL REGISTRO FINALIZO CORRECTAMENTE
-                        if(cuerpo.equals("true")){
-                            Log.d("TEST - FIN REGISTRO", "EXITOSO");
-                            intent();
-                        }
-                        // SI FALLO ALGO AL INSERTAR EL NUEVO USUARIO
-                        else {
-                            Log.d("TEST - FIN REGISTRO","ALGO HA FALLADO");
-                        }
-                    }
-                });
-    }
-
-    private void intent(){
-        PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
-                "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
-                new PeticionarioREST.RespuestaREST () {
-                    @Override
-                    public void callback(int codigo, String cuerpo) {
-                        Log.d("TEST - RESPUESTA","codigo respuesta= " + codigo + " <-> \n" + cuerpo);
-                        if(cuerpo.equals("true")){
-                            SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("auth_token", password);
-                            editor.putString("email", email);
-                            editor.apply();
-                            redireccion(email);
-                        } else if(cuerpo.equals("false")){
-                            Log.d("TEST - INICIO POST REGISTRO", "ALGO SALIO MAL");
-                        }
-                    }
-                });
-    }
-
-    public void redireccion(String email){
-        Intent intent = new Intent(this, Home.class);
+    private void iniciarScanQR(){
+        Intent intent = new Intent(this, ScanActivity.class);
         datosUsuario.setEmail(email);
+        datosUsuario.setTelefono(telefono);
+        datosUsuario.setNombre(nombre);
+        datosUsuario.setPassword(password);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }

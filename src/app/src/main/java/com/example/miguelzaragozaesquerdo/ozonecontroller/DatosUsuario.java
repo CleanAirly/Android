@@ -10,6 +10,7 @@ public class DatosUsuario implements Serializable {
     private String Nombre;
     private String IdSonda;
     private String Telefono;
+    private String Password;
 
     /**
      * Constructor por defecto de la clase DatosUsuario.
@@ -49,6 +50,14 @@ public class DatosUsuario implements Serializable {
     }
 
     /**
+     * Obtiene el password del usuario.
+     * @return El password del usuario.
+     */
+    public String getPassword(){
+        return this.Password;
+    }
+
+    /**
      * Establece el correo electrónico del usuario.
      * @param email El correo electrónico del usuario.
      */
@@ -78,5 +87,13 @@ public class DatosUsuario implements Serializable {
      */
     public void setTelefono(String telefono){
         this.Telefono = telefono;
+    }
+
+    /**
+     * Establece el telefono del usuario.
+     * @param password El telefono del usuario.
+     */
+    public void setPassword(String password){
+        this.Password = password;
     }
 }
