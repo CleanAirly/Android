@@ -5,10 +5,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/circuloHome"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="-24dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome" />
+
+    <ImageView
+        android:id="@+id/circuloHome4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="-8dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintBottom_toTopOf="@+id/circuloHome5"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome5" />
+
+    <ImageView
+        android:id="@+id/circuloHome5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="-24dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/circuloHome9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+        app:layout_constraintStart_toStartOf="@+id/imageButton6" />
+
+    <ImageView
+        android:id="@+id/circuloHome10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButton6" />
+
+    <ImageView
+        android:id="@+id/circuloHome18"
+        android:layout_width="250dp"
+        android:layout_height="3dp"
+        android:background="@drawable/circulo1"
+        android:elevation="11dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        />
+
+    <ImageView
+        android:id="@+id/circuloHome11"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo3"
+        app:layout_constraintTop_toBottomOf="@+id/circuloHome6" />
+
+    <ImageView
+        android:id="@+id/circuloHome13"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintStart_toEndOf="@+id/circuloHome6"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome14"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="-32dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome16"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintEnd_toStartOf="@+id/circuloHome7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circuloHome17"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circulo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circuloHome7" />
+
+    <ImageView
+        android:id="@+id/circuloHome7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/circulo1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/texto_bienvenido"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="¡Bienvenido a CleanAirly!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,8 +158,11 @@
 
     <TextView
         android:id="@+id/texto_vamos_a_empezar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="Vamos a empezar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +171,11 @@
 
     <TextView
         android:id="@+id/texto_introduce_tu_nombre"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="Introduce tu nombre:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +203,11 @@
 
     <TextView
         android:id="@+id/texto_genial"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="Genial, vamos a continuar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +216,11 @@
 
     <TextView
         android:id="@+id/texto_introduce_tu_numero_de_teléfono"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="Ahora, necesitamos que introduzcas tu número de teléfono para ponernos en contacto contigo. Es algo que podrás cambiar más adelante."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,15 +243,17 @@
             android:id="@+id/input_telefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe aquí tu número de teléfono"
             android:inputType="phone"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/texto_enlaza_sensor"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="¡Muy bien! Es momento de vincular tu sensor."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +265,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="guardarNombre"
+        android:textColor="@color/white"
         android:text="Continuar"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,9 +276,11 @@
     <Button
         android:id="@+id/btnTelefono"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:onClick="guardarTelefono"
         android:text="Continuar"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,12 +288,15 @@
 
     <TextView
         android:id="@+id/texto_CodigoVerificar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="start"
         android:text="Comprueba que eres tu mediante el correo que hemos enviado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/texto_introduce_tu_numero_de_teléfono"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -153,7 +315,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="verificarCodigo"
+        android:textColor="@color/white"
         android:text="Continuar"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="@+id/btnReenviarCodigoVerificar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -165,6 +329,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Volver"
+        android:textColor="@color/white"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="@+id/btnReenviarCodigoVerificar"
         app:layout_constraintEnd_toStartOf="@+id/btnReenviarCodigoVerificar"
         app:layout_constraintHorizontal_bias="0.5"
@@ -176,7 +342,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="reenviarCodigo"
-        android:text="Vovler a enviar"
+        android:text="Reenviar"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnContinuarCodigoVerificar"
         app:layout_constraintHorizontal_bias="0.5"
@@ -189,6 +359,8 @@
         android:layout_height="wrap_content"
         android:onClick="crearUsuarioBaseDatos"
         android:text="FINALIZAR"
+        android:textColor="@color/white"
+        android:background="@drawable/botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

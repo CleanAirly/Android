@@ -202,7 +202,7 @@ public class MiServicio extends Service {
             Log.d("TEST-ENVIAR", "guardarUltimaMedicion: ");
             if(major != 0 && major !=majorAnterior){
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/value",
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/value",
                         "{\"email\": \"" + email + "\"" + "," +
                                 "\"valor\": \"" + major + "\"" + "," +
                                 "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +

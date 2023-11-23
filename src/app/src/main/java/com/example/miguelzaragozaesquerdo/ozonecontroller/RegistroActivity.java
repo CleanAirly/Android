@@ -260,14 +260,14 @@ public class RegistroActivity extends AppCompatActivity {
             public void run() {
                 mostrarTexto(textoEnlazaSensor, 0);
             }
-        }, 0);
+        }, 1000);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 iniciarScanQR();
             }
-        }, 1000);
+        }, 4000);
     }
 
     private void iniciarScanQR(){

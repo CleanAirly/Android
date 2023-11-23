@@ -216,7 +216,7 @@ public class Home extends AppCompatActivity {
      */
     public void obtenerDatosUsuario(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/usuario",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/usuario",
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override
@@ -266,7 +266,7 @@ public class Home extends AppCompatActivity {
      */
     private void obtenerUltimaMedicion(String email) {
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/medida",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/medida",
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)
@@ -300,7 +300,7 @@ public class Home extends AppCompatActivity {
     private void obtenerUltimasMediciones(String email, int cantidadMediciones) {
         Log.d("TAG4", "{\"email\": \"" + email + "\", \"cantidad\": " + cantidadMediciones + "}");
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/obtenerNMedidas",
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/obtenerNMedidas",
                 "{\"email\": \"" + email + "\", \"cantidad\": " + cantidadMediciones + "}",
                 new PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)
