@@ -161,7 +161,7 @@ public class Login extends AppCompatActivity {
             // REGISTRO SELECCIONADO
             if(switchOnOff.isChecked()){
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate",
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/registrate",
                         "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
                         new PeticionarioREST.RespuestaREST () {
                             @Override
@@ -185,7 +185,7 @@ public class Login extends AppCompatActivity {
             // LOGIN SELECCIONADO
             else {
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/login/",
                         "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
                         new PeticionarioREST.RespuestaREST () {
                             @Override

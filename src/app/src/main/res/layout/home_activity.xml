@@ -54,7 +54,7 @@
         android:background="@drawable/circulo2"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintStart_toStartOf="parent"
-    />
+        app:layout_constraintTop_toTopOf="@+id/imageButton8" />
 
     <ImageView
         android:id="@+id/circuloHome9"
@@ -80,8 +80,7 @@
         android:id="@+id/circuloHome18"
         android:layout_width="250dp"
         android:layout_height="3dp"
-        android:outlineProvider="none"
-        android:background="@drawable/circulo3"
+        android:background="@drawable/circulo1"
         android:elevation="11dp"
         app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="@+id/imageButton6"
@@ -145,9 +144,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/circulo1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button6"
@@ -160,8 +159,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/frameLayout"
-         />
+        app:layout_constraintStart_toStartOf="@+id/frameLayout" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -209,13 +207,14 @@
         android:layout_width="0dp"
         android:layout_height="175dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="40dp"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17">
+        app:layout_constraintTop_toTopOf="@+id/imageButton6">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
@@ -280,7 +279,7 @@
         android:fontFamily="@font/roboto_medium"
         android:text="70 ppm"
         android:textColor="@color/colortxt"
-        android:textSize="16sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
@@ -291,8 +290,12 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/circle_shape"
         android:elevation="11dp"
-        android:progressDrawable="@drawable/progress_bar"
+        android:indeterminate="false"
+        android:max="500"
+        android:progress="500"
+        android:progressDrawable="@drawable/circular_progress_bar"
         app:layout_constraintBottom_toTopOf="@+id/txtEstadoAireLanding"
         app:layout_constraintEnd_toEndOf="@+id/imageButton6"
         app:layout_constraintHorizontal_bias="0.5"
@@ -315,15 +318,4 @@
         app:layout_constraintStart_toStartOf="@+id/imageButton6"
         app:layout_constraintTop_toBottomOf="@+id/circuloHome18" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="17dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:clickable="false"
-        android:elevation="13dp"
-        android:onClick="botonAbrirInfomacion"
-        app:layout_constraintStart_toEndOf="@+id/txtEstadoAireLanding"
-        app:layout_constraintTop_toTopOf="@+id/txtEstadoAireLanding"
-        app:srcCompat="@drawable/icono_informacion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,6 +71,7 @@ public class MiServicio extends Service {
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationChannel.setDescription("Descripcion del canal");
             notificationManager.createNotificationChannel(notificationChannel);
+            Log.d("TAG3", "servicio activo");
         }
     }
 
@@ -100,13 +101,13 @@ public class MiServicio extends Service {
                 Log.d("bool", resultadoGuardar);
 
 
-
-                if(resultadoGuardar.equals("true") && !resultadoGuardarAnterior.equals("true") && major > 500){
+                Log.d("major", Integer.toString(major));
+                if(major > 500){
                     notificacion.setContentTitle("Medida demasiado alta");
                     notificacion.setContentText("Usted está expuesto a una cantidad muy elevada de ozono");
-                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_done_24);
+                    notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_upload_24);
                     notificationManager.notify(NOTIFICACION_ID, notificacion.build());
-                    resultadoGuardarAnterior = "true";
+                    resultadoGuardarAnterior = "excesiva";
                 }
                 else if(resultadoGuardar.equals("true") && !resultadoGuardarAnterior.equals("true")){
                         notificacion.setContentTitle("Funcionando correctamente");
@@ -130,7 +131,7 @@ public class MiServicio extends Service {
                     notificationManager.notify(NOTIFICACION_ID, notificacion.build());
                     resultadoGuardarAnterior = "false";
                 }
-                else if(distanciaSensor > 100){
+                else if(distanciaSensor > 75){
                     notificacion.setContentTitle("Sensor muy lejos");
                     notificacion.setContentText("El sensor está muy lejos de tu móvil");
                     notificacion.setSmallIcon(R.drawable.ic_baseline_cloud_off_24);
@@ -201,7 +202,7 @@ public class MiServicio extends Service {
             Log.d("TEST-ENVIAR", "guardarUltimaMedicion: ");
             if(major != 0 && major !=majorAnterior){
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/value",
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.102:3001/api/sensor/value",
                         "{\"email\": \"" + email + "\"" + "," +
                                 "\"valor\": \"" + major + "\"" + "," +
                                 "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +
@@ -323,7 +324,7 @@ public class MiServicio extends Service {
         // Log.d(ETIQUETA_LOG, " dirección = " + bluetoothDevice.getAddress());
          //Log.d(ETIQUETA_LOG, " rssi = " + rssi);
          distanciaSensor = (-1*rssi);
-
+        Log.d("Dist", Double.toString(distanciaSensor));
         // Log.d(ETIQUETA_LOG, " bytes = " + new String(bytes));
         // Log.d(ETIQUETA_LOG, " bytes (" + bytes.length + ") = " + Utilidades.bytesToHexString(bytes));
 
