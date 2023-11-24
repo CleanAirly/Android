@@ -26,13 +26,7 @@ public class RegistroPopUpPrivacidad extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         // Acciones a realizar cuando se presiona el botón Aceptar
                     }
-                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
                 });
-
         return builder.create();
     }
 }

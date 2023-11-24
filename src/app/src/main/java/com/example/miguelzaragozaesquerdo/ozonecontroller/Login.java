@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
     private EditText InputContrasenya;
     private EditText InputConfContrasenya;
     private boolean textoContrasenya;
+    private boolean textoConfContrasenya;
     private DatosUsuario datosUsuario;
     private Button botonIniciar;
     private String codigoVerificacionRegistro;
@@ -109,16 +110,17 @@ public class Login extends AppCompatActivity {
                 checkBoxPrivacidad.setVisibility(View.GONE);
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.VISIBLE);
             }
-        });
 
-        RegistroPopUpPrivacidad dialog = new RegistroPopUpPrivacidad();
-
-        checkBoxPrivacidad.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                dialog.show(getSupportFragmentManager(), "RegistroPopUpPrivacidad");
-            } else {
-
-            }
+            checkBoxPrivacidad.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked && txtErrorConfContrasenya.getText().toString().equals("Acepte la Política de privacidad")){
+                        RegistroPopUpPrivacidad dialog = new RegistroPopUpPrivacidad();
+                        dialog.show(getSupportFragmentManager(), "RegistroPopUpPrivacidad");
+                        txtErrorConfContrasenya.setVisibility(View.GONE);
+                    }
+                }
+            });
         });
 
         InputNombre.addTextChangedListener(new TextWatcher() {
@@ -128,6 +130,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.GONE);
+                if(textoConfContrasenya) {
+                    txtErrorConfContrasenya.setVisibility(View.GONE);
+                    txtErrorConfContrasenya.setText("Las contraseñas no coinciden");
+                }
             }
             @Override
             public void afterTextChanged(Editable editable) {
@@ -141,9 +147,30 @@ public class Login extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.GONE);
+                if(textoConfContrasenya) {
+                    txtErrorConfContrasenya.setVisibility(View.GONE);
+                    txtErrorConfContrasenya.setText("Las contraseñas no coinciden");
+                }
             }
             @Override
             public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        InputConfContrasenya.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(textoConfContrasenya) txtErrorConfContrasenya.setVisibility(View.GONE);
+                if(textoContrasenya) {
+                    txtErrorContrasenya.setVisibility(View.GONE);
+                    txtErrorConfContrasenya.setText("Las contraseñas no coinciden");
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
@@ -160,26 +187,37 @@ public class Login extends AppCompatActivity {
 
             // REGISTRO SELECCIONADO
             if(switchOnOff.isChecked()){
-                PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate",
-                        "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
-                        new PeticionarioREST.RespuestaREST () {
-                            @Override
-                            public void callback(int codigo, String cuerpo) {
+               if(InputConfContrasenya.getText().toString().equals("") || !InputConfContrasenya.getText().toString().equals(InputContrasenya.getText().toString())){
+                    // CONTRASEÑSA NO COINCIDEN
+                   txtErrorConfContrasenya.setText("Las contraseñas deben ser iguales");
+                   txtErrorConfContrasenya.setVisibility(View.VISIBLE);
+                   textoConfContrasenya = true;
+                } else if(!checkBoxPrivacidad.isChecked()){
+                    txtErrorConfContrasenya.setText("Acepte la Política de privacidad");
+                   txtErrorConfContrasenya.setVisibility(View.VISIBLE);
+                   textoConfContrasenya = true;
+                } else {
+                   PeticionarioREST elPeticionario = new PeticionarioREST();
+                   elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate",
+                           "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
+                           new PeticionarioREST.RespuestaREST () {
+                               @Override
+                               public void callback(int codigo, String cuerpo) {
 
-                                // SI EL CORREO EXISTE EN LA BASE DE DATOS
-                                if(cuerpo.replace("\"", "").equals("existe")){
-                                    Log.d("TEST - REGISTRO", "EXISTE");
-                                }
-                                // SI NO EXISTE EL CORREO EN LA BASE DE DATOS
-                                else {
-                                    Log.d("TEST","ENVIAR CORREO");
-                                    codigoVerificacionRegistro = Utilidades.codigoAleatorio();
-                                    Utilidades.enviarConGMail(email, "Completa tu registro", "CleanAirly - Tu código de registro es "+codigoVerificacionRegistro+". Introducelo para comprobar que este es tu correo.");
-                                    intent(codigoVerificacionRegistro, email, password);
-                                }
-                            }
-                });
+                                   // SI EL CORREO EXISTE EN LA BASE DE DATOS
+                                   if(cuerpo.replace("\"", "").equals("existe")){
+                                       Log.d("TEST - REGISTRO", "EXISTE");
+                                   }
+                                   // SI NO EXISTE EL CORREO EN LA BASE DE DATOS
+                                   else {
+                                       Log.d("TEST","ENVIAR CORREO");
+                                       codigoVerificacionRegistro = Utilidades.codigoAleatorio();
+                                       Utilidades.enviarConGMail(email, "Completa tu registro", "CleanAirly - Tu código de registro es "+codigoVerificacionRegistro+". Introducelo para comprobar que este es tu correo.");
+                                       intent(codigoVerificacionRegistro, email, password);
+                                   }
+                               }
+                           });
+               }
             }
 
             // LOGIN SELECCIONADO
@@ -199,6 +237,7 @@ public class Login extends AppCompatActivity {
                                     editor.apply();
                                     redireccion(email);
                                 } else if(cuerpo.equals("false")){
+                                    txtErrorContrasenya.setText("Credenciales incorrectas");
                                     cambiarVisibilidad();
                                 }
                             }
@@ -206,7 +245,15 @@ public class Login extends AppCompatActivity {
             }
         }
         else{
-            Log.d("TEST - VACIO", "");
+            if(switchOnOff.isChecked()){
+                txtErrorConfContrasenya.setText("Rellene los campos");
+                txtErrorConfContrasenya.setVisibility(View.VISIBLE);
+                textoConfContrasenya = true;
+            } else {
+                txtErrorContrasenya.setText("Rellene los campos");
+                cambiarVisibilidad();
+            }
+
         }
     }
 
