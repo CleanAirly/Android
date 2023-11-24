@@ -202,7 +202,11 @@ public class MiServicio extends Service {
             Log.d("TEST-ENVIAR", "guardarUltimaMedicion: ");
             if(major != 0 && major !=majorAnterior){
                 PeticionarioREST elPeticionario = new PeticionarioREST();
+<<<<<<< Updated upstream
                 elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/value",
+=======
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/value",
+>>>>>>> Stashed changes
                         "{\"email\": \"" + email + "\"" + "," +
                                 "\"valor\": \"" + major + "\"" + "," +
                                 "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +

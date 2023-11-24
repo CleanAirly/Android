@@ -113,7 +113,11 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
 
     private void guardarDatos(String nombre, String telefono){
         PeticionarioREST elPeticionario = new PeticionarioREST();
+<<<<<<< Updated upstream
         elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.47:3001/api/sensor/usuarioUpdate",
+=======
+        elPeticionario.hacerPeticionREST("PUT", "http://192.168.136.103:3001/api/sensor/usuarioUpdate",
+>>>>>>> Stashed changes
                 "{\"email\": \"" + datosUsuario.getEmail() + "\", \"nombre\": \"" + nombre + "\", \"telefono\": \"" + telefono + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override

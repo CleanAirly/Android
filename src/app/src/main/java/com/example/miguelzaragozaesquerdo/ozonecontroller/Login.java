@@ -187,6 +187,7 @@ public class Login extends AppCompatActivity {
 
             // REGISTRO SELECCIONADO
             if(switchOnOff.isChecked()){
+<<<<<<< Updated upstream
                if(InputConfContrasenya.getText().toString().equals("") || !InputConfContrasenya.getText().toString().equals(InputContrasenya.getText().toString())){
                     // CONTRASEÑSA NO COINCIDEN
                    txtErrorConfContrasenya.setText("Las contraseñas deben ser iguales");
@@ -203,6 +204,14 @@ public class Login extends AppCompatActivity {
                            new PeticionarioREST.RespuestaREST () {
                                @Override
                                public void callback(int codigo, String cuerpo) {
+=======
+                PeticionarioREST elPeticionario = new PeticionarioREST();
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/registrate",
+                        "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
+                        new PeticionarioREST.RespuestaREST () {
+                            @Override
+                            public void callback(int codigo, String cuerpo) {
+>>>>>>> Stashed changes
 
                                    // SI EL CORREO EXISTE EN LA BASE DE DATOS
                                    if(cuerpo.replace("\"", "").equals("existe")){
@@ -223,7 +232,11 @@ public class Login extends AppCompatActivity {
             // LOGIN SELECCIONADO
             else {
                 PeticionarioREST elPeticionario = new PeticionarioREST();
+<<<<<<< Updated upstream
                 elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
+=======
+                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/login/",
+>>>>>>> Stashed changes
                         "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
                         new PeticionarioREST.RespuestaREST () {
                             @Override
