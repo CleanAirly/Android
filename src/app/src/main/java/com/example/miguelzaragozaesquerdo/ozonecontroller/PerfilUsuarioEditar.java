@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PerfilUsuarioEditar extends AppCompatActivity {
 
+    private static final String RUTA = "192.168.136.129";
     private EditText editarNombre;
     private TextView editarEmail;
     private EditText editarTelefono;
@@ -112,12 +113,9 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
     }
 
     private void guardarDatos(String nombre, String telefono){
+
         PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
-        elPeticionario.hacerPeticionREST("PUT", "http://192.168.1.47:3001/api/sensor/usuarioUpdate",
-=======
-        elPeticionario.hacerPeticionREST("PUT", "http://192.168.136.103:3001/api/sensor/usuarioUpdate",
->>>>>>> Stashed changes
+        elPeticionario.hacerPeticionREST("PUT", "http://" + RUTA + ":3001/api/sensor/usuarioUpdate",
                 "{\"email\": \"" + datosUsuario.getEmail() + "\", \"nombre\": \"" + nombre + "\", \"telefono\": \"" + telefono + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override

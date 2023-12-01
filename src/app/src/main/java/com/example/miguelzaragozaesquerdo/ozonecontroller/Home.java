@@ -134,6 +134,15 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /**
+     * Verifica si un servicio específico está actualmente en ejecución en la aplicación.
+     * Esta función recorre la lista de servicios en ejecución en el dispositivo y compara
+     * el nombre de clase de cada servicio en ejecución con el de 'MiServicio'.
+     * Si encuentra una coincidencia, indica que el servicio está activo y devuelve 'true'.
+     * En caso contrario, devuelve 'false', indicando que el servicio no está activo.
+     *
+     * @return 'true' si el servicio 'MiServicio' está en ejecución, 'false' en caso contrario.
+     */
     private boolean isServicioActivo() {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         if (manager != null) {
@@ -146,6 +155,14 @@ public class Home extends AppCompatActivity {
         return false; // El servicio no está activo
     }
 
+    /**
+     * Activa el servicio 'MiServicio'.
+     * Esta función crea un Intent para el servicio 'MiServicio' y le añade información adicional,
+     * en este caso, el correo electrónico del usuario, obtenido de 'datosUsuario'.
+     * Luego, inicia el servicio utilizando este Intent. Este método es útil para iniciar el servicio
+     * con los datos necesarios para su funcionamiento, permitiendo que el servicio realice sus tareas con
+     * información contextual relevante del usuario.
+     */
     public void activarServicio(){
         Intent serviceIntent = new Intent(this, MiServicio.class);
         serviceIntent.putExtra("email",datosUsuario.getEmail());
@@ -192,9 +209,6 @@ public class Home extends AppCompatActivity {
         }
     }
 
-
-
-
     /**
      * Redirige a la pantalla de perfil del usuario.
      */
@@ -216,11 +230,7 @@ public class Home extends AppCompatActivity {
      */
     public void obtenerDatosUsuario(String email){
         PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/usuario",
-=======
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/usuario",
->>>>>>> Stashed changes
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST () {
                     @Override
@@ -270,11 +280,7 @@ public class Home extends AppCompatActivity {
      */
     private void obtenerUltimaMedicion(String email) {
         PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/medida",
-=======
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/medida",
->>>>>>> Stashed changes
                 "{\"email\": \"" + email + "\"}",
                 new PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)
@@ -305,14 +311,20 @@ public class Home extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Solicita y procesa las últimas mediciones de un sensor asociado a un usuario.
+     * Esta función envía una solicitud POST a un servidor para obtener un número específico de mediciones recientes
+     * asociadas con el email del usuario. La cantidad de mediciones a recuperar se especifica en el parámetro 'cantidadMediciones'.
+     * Tras recibir la respuesta del servidor, este método procesa el JSON recibido para extraer y almacenar las mediciones.
+     * Si hay un error en la recepción o el procesamiento de los datos, se registra un mensaje de error.
+     *
+     * @param email             El correo electrónico del usuario asociado a las mediciones.
+     * @param cantidadMediciones La cantidad de mediciones a obtener del servidor.
+     */
     private void obtenerUltimasMediciones(String email, int cantidadMediciones) {
         Log.d("TAG4", "{\"email\": \"" + email + "\", \"cantidad\": " + cantidadMediciones + "}");
         PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
         elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/obtenerNMedidas",
-=======
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/obtenerNMedidas",
->>>>>>> Stashed changes
                 "{\"email\": \"" + email + "\", \"cantidad\": " + cantidadMediciones + "}",
                 new PeticionarioREST.RespuestaREST() {
                     @TargetApi(Build.VERSION_CODES.Q)
@@ -370,8 +382,20 @@ public class Home extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     // BLUETOOTH
     // ---------------------------------------------------------------------------------------------
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    /**
+     * Maneja los resultados de la solicitud de permisos.
+     * Este método es un callback que se invoca cuando el usuario responde a una solicitud de permiso.
+     * Dependiendo de si los permisos fueron concedidos o no, realiza acciones específicas.
+     * En este caso, si los permisos solicitados son concedidos (específicamente para el código de petición 'CODIGO_PETICION_PERMISOS'),
+     * se registra un mensaje de confirmación. Si no se conceden, se registra un mensaje de error.
+     * Este método es esencial para el manejo correcto de permisos en la aplicación, asegurando que las funcionalidades
+     * que dependen de ciertos permisos solo se ejecuten si están disponibles.
+     *
+     * @param requestCode  El código de solicitud de permisos, para identificar de qué solicitud se recibió la respuesta.
+     * @param permissions  Los permisos solicitados.
+     * @param grantResults Los resultados de las solicitudes de permisos, indicando si se concedieron o no.
+     */
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode) {

@@ -29,7 +29,28 @@ import com.google.android.gms.location.LocationServices;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Servicio de fondo que gestiona la interacción con un dispositivo Bluetooth y la localización.
+ * 'MiServicio' es un servicio de Android que se ejecuta en segundo plano para realizar tareas
+ * como obtener la ubicación actual, buscar dispositivos Bluetooth específicos y manejar notificaciones.
+ * Este servicio utiliza varias APIs y funcionalidades del sistema Android, incluyendo Bluetooth,
+ * localización y notificaciones. Además, realiza peticiones a un servidor para enviar o recibir datos.
+ *
+ * Métodos Principales:
+ * - onCreate(): Configura el canal de notificaciones para versiones de Android Oreo en adelante.
+ * - onStartCommand(): Inicia el servicio en primer plano, configura notificaciones y comienza
+ *   la lógica recurrente utilizando un Handler.
+ * - obtenerUbicacion(): Obtiene la ubicación actual del dispositivo.
+ * - onDestroy(): Limpia y detiene el servicio cuando ya no es necesario.
+ * - onBind(): Método requerido para servicios, aunque no se utiliza para vincular en este caso.
+ * - guardarUltimaMedicion(): Guarda la última medición obtenida del dispositivo Bluetooth.
+ * - inicializarBlueTooth(): Inicializa el adaptador Bluetooth y comienza a buscar dispositivos.
+ * - buscarEsteDispositivoBTLE(): Busca un dispositivo Bluetooth específico por nombre.
+ * - detenerBusquedaDispositivosBTLE(): Detiene la búsqueda de dispositivos Bluetooth.
+ *
+ * Además, incluye métodos para interactuar con el escaneo Bluetooth, gestionar notificaciones
+ * y comunicarse con un servidor remoto.
+ */
 public class MiServicio extends Service {
     private NotificationManager notificationManager;
     static final String CANAL_ID = "mi_canal";
@@ -202,11 +223,7 @@ public class MiServicio extends Service {
             Log.d("TEST-ENVIAR", "guardarUltimaMedicion: ");
             if(major != 0 && major !=majorAnterior){
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
                 elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/value",
-=======
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/value",
->>>>>>> Stashed changes
                         "{\"email\": \"" + email + "\"" + "," +
                                 "\"valor\": \"" + major + "\"" + "," +
                                 "\"lugar\": \"" + localizacion.getLatitude() + ", " + localizacion.getAltitude() + "\"" + "," +
@@ -510,8 +527,5 @@ public class MiServicio extends Service {
             Log.d(ETIQUETA_LOG, " inicializarBlueTooth(): Socorro: NO hemos obtenido escaner btle  !!!!");
 
         }
-
-
-
-    } // ()
+    }
 }

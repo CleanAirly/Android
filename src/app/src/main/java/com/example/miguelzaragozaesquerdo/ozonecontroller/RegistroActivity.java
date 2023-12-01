@@ -156,6 +156,14 @@ public class RegistroActivity extends AppCompatActivity {
         animacionCodigoVerificacion();
     }
 
+    /**
+     * Inicia una secuencia de animaciones para la bienvenida del usuario.
+     * Esta función maneja una serie de animaciones que se ejecutan con retrasos específicos.
+     * Inicialmente, muestra un texto de bienvenida. Luego, reemplaza este texto por una invitación
+     * para que el usuario introduzca su nombre y finalmente muestra un campo de texto y un botón
+     * para guardar el nombre del usuario.
+     * Las animaciones se realizan mediante el uso de múltiples instancias de Handler y postDelayed.
+     */
     private void animacionBienvenidaNombre(){
         Handler A = new Handler();
         A.postDelayed(new Runnable() {
@@ -182,6 +190,16 @@ public class RegistroActivity extends AppCompatActivity {
         }, 5500);
     }
 
+    /**
+     * Maneja el evento de clic en el botón para guardar el nombre del usuario.
+     * Este método verifica si el campo de texto 'inputNombre' no está vacío. Si contiene un nombre,
+     * almacena este nombre en la variable 'nombre', luego procede a animar la desaparición del texto instructivo,
+     * del campo de texto y del botón de guardado. Después de ocultar estos elementos, inicia la animación
+     * relacionada con la introducción del teléfono del usuario llamando a 'animacionTelefono'.
+     * Este método es un paso clave en el proceso de registro del usuario, asegurando que se haya proporcionado un nombre válido.
+     *
+     * @param view El componente de la interfaz de usuario que desencadena este método (usualmente un botón).
+     */
     public void guardarNombre(View view){
         if(!inputNombre.getText().toString().equals("")){
             nombre = inputNombre.getText().toString();
@@ -192,6 +210,14 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Inicia una secuencia de animaciones para la verificación de código.
+     * Esta función maneja una serie de animaciones que se ejecutan con retrasos específicos.
+     * Comienza mostrando un texto para indicar al usuario que introduzca el código de verificación.
+     * Después de un breve retraso, muestra un campo de texto para la entrada del código y varios botones:
+     * uno para continuar después de ingresar el código, otro para reenviar el código, y un último botón para volver.
+     * Estas acciones se realizan utilizando Handlers y el método postDelayed.
+     */
     private void animacionCodigoVerificacion(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -211,6 +237,17 @@ public class RegistroActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    /**
+     * Verifica el código de registro introducido por el usuario.
+     * Este método compara el texto introducido en el campo 'inputCodigo' con el 'codigoVerificacionRegistro' almacenado.
+     * Si el código introducido coincide con el código de verificación, procede a animar la desaparición
+     * del texto del código, el campo de entrada del código y los botones asociados.
+     * Después de ocultar estos elementos, inicia la animación de bienvenida para el ingreso del nombre del usuario
+     * mediante la llamada a 'animacionBienvenidaNombre'.
+     * Este método es un paso clave en el proceso de verificación del registro del usuario.
+     *
+     * @param view El componente de la interfaz de usuario que desencadena este método (usualmente un botón).
+     */
     public void verificarCodigo(View view){
         if(inputCodigo.getText().toString().equals(codigoVerificacionRegistro)){
             despedirTexto(textoCodigo);
@@ -222,11 +259,28 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Maneja el evento de clic en el botón para reenviar el código de verificación.
+     * Este método genera un nuevo código de verificación aleatorio y lo envía al email del usuario.
+     * El nuevo código se genera utilizando 'Utilidades.codigoAleatorio()' y se envía mediante 'Utilidades.enviarConGMail',
+     * incluyendo un mensaje que instruye al usuario a introducir el código recibido para completar su registro.
+     * Este método se utiliza en el proceso de verificación de la cuenta del usuario, asegurándose de que el email proporcionado es válido.
+     *
+     * @param view El componente de la interfaz de usuario que desencadena este método (usualmente un botón).
+     */
     public void reenviarCodigo(View view){
         codigoVerificacionRegistro = Utilidades.codigoAleatorio();
         Utilidades.enviarConGMail(email, "Completa tu registro", "CleanAirly - Tu código de registro es "+codigoVerificacionRegistro+". Introducelo para comprobar que este es tu correo.");
     }
 
+    /**
+     * Inicia una secuencia de animaciones para la introducción del número de teléfono.
+     * Esta función gestiona una serie de animaciones que se ejecutan con retrasos específicos.
+     * Comienza mostrando un texto que invita al usuario a introducir su número de teléfono.
+     * Después de un breve retraso, muestra un campo de texto para que el usuario ingrese su teléfono
+     * y un botón para guardar esta información.
+     * Se utilizan Handlers y el método postDelayed para controlar los tiempos de ejecución de estas acciones.
+     */
     private void animacionTelefono(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -244,6 +298,15 @@ public class RegistroActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    /**
+     * Maneja el evento de clic en el botón para guardar el número de teléfono del usuario.
+     * Este método verifica si el campo de texto 'inputTelefono' no está vacío. Si contiene un número de teléfono,
+     * procede a animar la desaparición del texto instructivo, del campo de texto y del botón de guardado.
+     * Después de ocultar estos elementos, almacena el número de teléfono ingresado en la variable 'telefono' y
+     * inicia la animación relacionada con el enlace del sensor llamando a 'animacionCodigoSensor'.
+     *
+     * @param view El componente de la interfaz de usuario que desencadena este método (usualmente un botón).
+     */
     public void guardarTelefono(View view){
         if(!inputTelefono.getText().toString().equals("")){
             despedirTexto(textoIntroduceTuTelefono);
@@ -254,6 +317,13 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Inicia una secuencia de animaciones relacionadas con el enlace de un sensor.
+     * Esta función gestiona una serie de animaciones con retrasos específicos para guiar al usuario en el proceso de enlazar un sensor.
+     * Inicialmente, muestra un texto instructivo ('textoEnlazaSensor'). Después de un retraso, inicia automáticamente
+     * la actividad de escaneo de código QR para el enlace del sensor.
+     * Se utilizan Handlers y el método postDelayed para controlar los tiempos de ejecución de estas acciones.
+     */
     private void animacionCodigoSensor(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -270,6 +340,13 @@ public class RegistroActivity extends AppCompatActivity {
         }, 4000);
     }
 
+    /**
+     * Inicia la actividad de escaneo de código QR.
+     * Este método prepara y lanza una nueva actividad, específicamente 'ScanActivity', para realizar el escaneo de un código QR.
+     * Antes de iniciar la actividad, establece los datos del usuario (como email, teléfono, nombre y contraseña)
+     * en un objeto 'datosUsuario', y luego pasa este objeto a la actividad 'ScanActivity' a través de un Intent.
+     * Esto permite que la siguiente actividad tenga acceso a la información relevante del usuario.
+     */
     private void iniciarScanQR(){
         Intent intent = new Intent(this, ScanActivity.class);
         datosUsuario.setEmail(email);
@@ -280,7 +357,14 @@ public class RegistroActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Creo una función para colocar el texto en la parte de abajo de la pantalla
+    /**
+     * Coloca una lista de TextViews en la parte inferior de la pantalla.
+     * Este método recorre cada TextView en la lista proporcionada y modifica su posición y opacidad.
+     * Cada TextView se desplaza hacia abajo en la pantalla y su opacidad se establece en cero,
+     * lo que efectivamente los hace invisibles y los posiciona para futuras animaciones o ajustes en la interfaz.
+     *
+     * @param elementos La lista de TextViews que se modificarán.
+     */
     private void colocarTextViewsEnlaParteDeAbajo(List<TextView> elementos) {
         for (int i = 0; i < elementos.size(); i++) {
             elementos.get(i).setTranslationY(1000);
@@ -288,7 +372,14 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
-    // Función para colocar todos los botones en la parte de abajo
+    /**
+     * Coloca una lista de botones en la parte inferior de la pantalla.
+     * Este método recorre cada botón en la lista proporcionada y modifica su posición y opacidad.
+     * Cada botón se desplaza hacia abajo en la pantalla y su opacidad se establece en cero,
+     * haciéndolos efectivamente invisibles y posicionándolos para futuras animaciones o ajustes en la interfaz de usuario.
+     *
+     * @param elementos La lista de botones que se modificarán.
+     */
     private void colocarButtonsEnlaParteDeAbajo(List<Button> elementos) {
         for (int i = 0; i < elementos.size(); i++) {
             elementos.get(i).setTranslationY(1000);
@@ -296,7 +387,14 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
-    // Coloco los Edit Text en la parte de abajo
+    /**
+     * Coloca una lista de EditTexts en la parte inferior de la pantalla.
+     * Este método recorre cada EditText en la lista proporcionada y modifica su posición y opacidad.
+     * Cada EditText se desplaza hacia abajo en la pantalla y su opacidad se establece en cero,
+     * haciéndolos efectivamente invisibles y posicionándolos para futuras animaciones o ajustes en la interfaz de usuario.
+     *
+     * @param elementos La lista de EditTexts que se modificarán.
+     */
     private void colocarEditTextEnLaParteDeAbajo(List<EditText> elementos) {
         for (int i = 0; i < elementos.size(); i++) {
             elementos.get(i).setTranslationY(1000);
@@ -304,37 +402,92 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
-    // Función para subir un TextView
+    /**
+     * Anima un TextView para que aparezca progresivamente en la pantalla.
+     * Esta función anima el TextView proporcionado para que se desplace verticalmente y
+     * aumente su opacidad de 0 a 1, creando un efecto de aparición suave. La posición vertical
+     * final del TextView puede ajustarse mediante el parámetro 'variacion'.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de desaceleración.
+     *
+     * @param elemento  El TextView que se va a animar.
+     * @param variacion La variación en la posición vertical del TextView (en píxeles).
+     */
     private void mostrarTexto(TextView elemento, int variacion) {
         // Hacemos que el texto aparezca progresivamente
         elemento.animate().translationY(0 + variacion).setDuration(1000);
         elemento.animate().alpha(1).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
     }
 
+    /**
+     * Anima un TextView para que desaparezca progresivamente de la pantalla.
+     * Esta función anima el TextView proporcionado para que se desplace verticalmente hacia arriba
+     * y disminuya su opacidad de 1 a 0, creando un efecto de desvanecimiento y desplazamiento.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de aceleración,
+     * dando la sensación de que el texto se "acelera" a medida que desaparece.
+     *
+     * @param elemento El TextView que se va a animar.
+     */
     private void despedirTexto(TextView elemento) {
         elemento.animate().translationY(-1200).setDuration(1000);
         elemento.animate().alpha(0).setDuration(1000).setInterpolator(new AccelerateInterpolator()).start();
     }
 
-    // Función para subir un EditText
+    /**
+     * Anima un EditText para que aparezca progresivamente en la pantalla.
+     * Esta función anima el EditText proporcionado para que se desplace verticalmente y
+     * aumente su opacidad de 0 a 1, creando un efecto de aparición suave. La posición vertical
+     * final del EditText puede ajustarse mediante el parámetro 'variacion'.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de desaceleración,
+     * dando la sensación de una transición suave y natural.
+     *
+     * @param elemento  El EditText que se va a animar.
+     * @param variacion La variación en la posición vertical del EditText (en píxeles).
+     */
     private void mostrarEditText(EditText elemento, int variacion) {
         // Hacemos que el texto aparezca progresivamente
         elemento.animate().translationY(0 + variacion).setDuration(1000);
         elemento.animate().alpha(1).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
     }
 
+    /**
+     * Anima un EditText para que desaparezca progresivamente de la pantalla.
+     * Esta función anima el EditText proporcionado para que se desplace verticalmente hacia arriba
+     * y disminuya su opacidad de 1 a 0, creando un efecto de desvanecimiento y desplazamiento.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de aceleración,
+     * dando la sensación de que el texto se "acelera" a medida que desaparece.
+     *
+     * @param elemento El EditText que se va a animar.
+     */
     private void despedirEditText(EditText elemento) {
         elemento.animate().translationY(-1200).setDuration(1000);
         elemento.animate().alpha(0).setDuration(1000).setInterpolator(new AccelerateInterpolator()).start();
     }
 
-    // Función para subir un EditText
+    /**
+     * Anima un Button para que aparezca progresivamente en la pantalla.
+     * Esta función anima el Button proporcionado para que se desplace verticalmente y
+     * aumente su opacidad de 0 a 1, creando un efecto de aparición suave. La posición vertical
+     * final del Button puede ajustarse mediante el parámetro 'variacion'.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de desaceleración.
+     *
+     * @param elemento  El Button que se va a animar.
+     * @param variacion La variación en la posición vertical del Button (en píxeles).
+     */
     private void mostrarButton(Button elemento, int variacion) {
         // Hacemos que el texto aparezca progresivamente
         elemento.animate().translationY(0 + variacion).setDuration(1000);
         elemento.animate().alpha(1).setDuration(1000).setInterpolator(new DecelerateInterpolator()).start();
     }
 
+    /**
+     * Anima un Button para que desaparezca progresivamente de la pantalla.
+     * Esta función anima el Button proporcionado para que se desplace verticalmente hacia arriba
+     * y disminuya su opacidad de 1 a 0, creando un efecto de desvanecimiento y desplazamiento.
+     * La animación tiene una duración de 1000 milisegundos y utiliza un interpolador de aceleración,
+     * dando la sensación de que el botón se "acelera" a medida que desaparece.
+     *
+     * @param elemento El Button que se va a animar.
+     */
     private void despedirButton(Button elemento) {
         elemento.animate().translationY(-1200).setDuration(1000);
         elemento.animate().alpha(0).setDuration(1000).setInterpolator(new AccelerateInterpolator()).start();

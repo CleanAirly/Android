@@ -3,10 +3,13 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -39,6 +42,8 @@ import javax.mail.internet.MimeMessage;
  * Autor: Mario Merenciano
  */
 public class Login extends AppCompatActivity {
+
+    private static final String RUTA = "192.168.136.129";
     private SwitchCompat switchOnOff;
     private TextView tvLogin;
     private TextView tvRegistrarse;
@@ -54,6 +59,7 @@ public class Login extends AppCompatActivity {
     private Button botonIniciar;
     private String codigoVerificacionRegistro;
     private CheckBox checkBoxPrivacidad;
+    private TextView txtOlvidadoContrasenya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,8 @@ public class Login extends AppCompatActivity {
         switchOnOff = findViewById(R.id.switchLogin);
 
         botonIniciar = findViewById(R.id.botonAccederLogin);
+
+        //txtOlvidadoContrasenya = findViewById(R.id.txtOlvidadoContrasenya);
 
         tvLogin = findViewById(R.id.txtLogin);
         tvRegistrarse = findViewById(R.id.txtRegistrarse);
@@ -83,6 +91,20 @@ public class Login extends AppCompatActivity {
         txtErrorConfContrasenya.setVisibility(View.GONE);
         checkBoxPrivacidad.setVisibility(View.GONE);
 
+        String texto = "He olvidado mi contraseña";
+        SpannableString subrayado = new SpannableString(texto);
+        subrayado.setSpan(new UnderlineSpan(), 0, texto.length(), 0);
+
+        txtOlvidadoContrasenya.setText(subrayado);
+        txtOlvidadoContrasenya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://"+RUTA+"/Sprint%201/web-sprint2/Web/src/introduccirEmailContr.html";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
         switchOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (switchOnOff.isChecked()) {
                 Log.d("TEST","REGISTRO");
@@ -97,6 +119,7 @@ public class Login extends AppCompatActivity {
                 InputConfContrasenya.setVisibility(View.VISIBLE);
                 txtErrorContrasenya.setVisibility(View.GONE);
                 checkBoxPrivacidad.setVisibility(View.VISIBLE);
+                txtOlvidadoContrasenya.setVisibility(View.GONE);
             } else {
                 botonIniciar.setText("ACCEDER");
                 Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
@@ -108,13 +131,14 @@ public class Login extends AppCompatActivity {
                 ConfContrasenya.setVisibility(View.GONE);
                 InputConfContrasenya.setVisibility(View.GONE);
                 checkBoxPrivacidad.setVisibility(View.GONE);
+                txtOlvidadoContrasenya.setVisibility(View.VISIBLE);
                 if(textoContrasenya) txtErrorContrasenya.setVisibility(View.VISIBLE);
             }
 
             checkBoxPrivacidad.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked && txtErrorConfContrasenya.getText().toString().equals("Acepte la Política de privacidad")){
+                    if(isChecked){
                         RegistroPopUpPrivacidad dialog = new RegistroPopUpPrivacidad();
                         dialog.show(getSupportFragmentManager(), "RegistroPopUpPrivacidad");
                         txtErrorConfContrasenya.setVisibility(View.GONE);
@@ -187,7 +211,6 @@ public class Login extends AppCompatActivity {
 
             // REGISTRO SELECCIONADO
             if(switchOnOff.isChecked()){
-<<<<<<< Updated upstream
                if(InputConfContrasenya.getText().toString().equals("") || !InputConfContrasenya.getText().toString().equals(InputContrasenya.getText().toString())){
                     // CONTRASEÑSA NO COINCIDEN
                    txtErrorConfContrasenya.setText("Las contraseñas deben ser iguales");
@@ -199,23 +222,16 @@ public class Login extends AppCompatActivity {
                    textoConfContrasenya = true;
                 } else {
                    PeticionarioREST elPeticionario = new PeticionarioREST();
-                   elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate",
+                   elPeticionario.hacerPeticionREST("POST", "http://" + RUTA + ":3001/api/sensor/registrate",
                            "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
                            new PeticionarioREST.RespuestaREST () {
                                @Override
                                public void callback(int codigo, String cuerpo) {
-=======
-                PeticionarioREST elPeticionario = new PeticionarioREST();
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/registrate",
-                        "{\"email\": \"" + InputNombre.getText().toString() + "\", \"verificacion\": \"" + true + "\"}",
-                        new PeticionarioREST.RespuestaREST () {
-                            @Override
-                            public void callback(int codigo, String cuerpo) {
->>>>>>> Stashed changes
 
                                    // SI EL CORREO EXISTE EN LA BASE DE DATOS
                                    if(cuerpo.replace("\"", "").equals("existe")){
-                                       Log.d("TEST - REGISTRO", "EXISTE");
+                                       txtErrorConfContrasenya.setText("Correo intrododucido ya existe");
+                                       txtErrorConfContrasenya.setVisibility(View.VISIBLE);
                                    }
                                    // SI NO EXISTE EL CORREO EN LA BASE DE DATOS
                                    else {
@@ -232,11 +248,7 @@ public class Login extends AppCompatActivity {
             // LOGIN SELECCIONADO
             else {
                 PeticionarioREST elPeticionario = new PeticionarioREST();
-<<<<<<< Updated upstream
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/login/",
-=======
-                elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/login/",
->>>>>>> Stashed changes
+                elPeticionario.hacerPeticionREST("POST", "http://" + RUTA + ":3001/api/sensor/login/",
                         "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}",
                         new PeticionarioREST.RespuestaREST () {
                             @Override
@@ -270,6 +282,16 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /**
+     * Inicia una nueva actividad para el registro de usuario.
+     * Este método crea un Intent para hacer la transición a la clase RegistroActivity.
+     * Pasa datos adicionales necesarios para el proceso de registro, incluyendo un código
+     * de verificación, el correo electrónico del usuario y la contraseña.
+     *
+     * @param codigo    El código de verificación necesario para el registro.
+     * @param email     El correo electrónico del usuario.
+     * @param password  La contraseña del usuario.
+     */
     private void intent(String codigo, String email, String password){
         Intent intent = new Intent(this, RegistroActivity.class);
         intent.putExtra("codigoVerificacionRegistro", codigo);
