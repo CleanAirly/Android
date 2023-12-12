@@ -150,7 +150,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             jsonString = jsonObject.toString();
         } catch (JSONException e) { e.printStackTrace(); }
         PeticionarioREST elPeticionario = new PeticionarioREST();
-        elPeticionario.hacerPeticionREST("POST", "http://192.168.136.103:3001/api/sensor/registrate", jsonString,
+        elPeticionario.hacerPeticionREST("POST", "http://192.168.1.47:3001/api/sensor/registrate", jsonString,
                 new PeticionarioREST.RespuestaREST () {
                     @Override
                     public void callback(int codigo, String cuerpo) {

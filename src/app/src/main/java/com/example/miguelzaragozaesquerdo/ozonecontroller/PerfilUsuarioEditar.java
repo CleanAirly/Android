@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PerfilUsuarioEditar extends AppCompatActivity {
 
-    private static final String RUTA = "192.168.136.129";
+    private static final String RUTA = "192.168.1.47";
     private EditText editarNombre;
     private TextView editarEmail;
     private EditText editarTelefono;

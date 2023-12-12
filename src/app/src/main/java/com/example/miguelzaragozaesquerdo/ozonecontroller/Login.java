@@ -43,7 +43,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class Login extends AppCompatActivity {
 
-    private static final String RUTA = "192.168.136.129";
+    private static final String RUTA = "192.168.1.47";
     private SwitchCompat switchOnOff;
     private TextView tvLogin;
     private TextView tvRegistrarse;
@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
 
         botonIniciar = findViewById(R.id.botonAccederLogin);
 
-        //txtOlvidadoContrasenya = findViewById(R.id.txtOlvidadoContrasenya);
+        txtOlvidadoContrasenya = findViewById(R.id.txtOlvidadoContrasenya);
 
         tvLogin = findViewById(R.id.txtLogin);
         tvRegistrarse = findViewById(R.id.txtRegistrarse);

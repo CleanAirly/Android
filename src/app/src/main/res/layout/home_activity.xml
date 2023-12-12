@@ -318,4 +318,16 @@
         app:layout_constraintStart_toStartOf="@+id/imageButton6"
         app:layout_constraintTop_toBottomOf="@+id/circuloHome18" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="17dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:clickable="false"
+        android:elevation="13dp"
+        android:onClick="botonAbrirInfomacion"
+        app:layout_constraintStart_toEndOf="@+id/txtEstadoAireLanding"
+        app:layout_constraintTop_toTopOf="@+id/txtEstadoAireLanding"
+        app:srcCompat="@drawable/icono_informacion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

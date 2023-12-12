@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class PerfilUsuario extends AppCompatActivity {
 
+    private static final String RUTA = "192.168.1.47";
     private TextView nombreUsuario;
     private TextView emailUsuario;
     private TextView telfUsuario;
@@ -41,6 +43,15 @@ public class PerfilUsuario extends AppCompatActivity {
         nombreUsuario.setText(datosUsuario.getNombre());
         emailUsuario.setText(datosUsuario.getEmail());
         telfUsuario.setText(datosUsuario.getTelefono());
+
+        restablecerContrasenya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://"+RUTA+"/biometriaSprint2/src/restablecerContrasenya.html";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -87,4 +98,7 @@ public class PerfilUsuario extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void reestablecerPassword(View view){
+
+    }
 }

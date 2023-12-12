@@ -285,7 +285,17 @@
         android:clickable="true"
         android:text="Acepto la Política de privacidad"
         app:layout_constraintBottom_toTopOf="@+id/botonAccederLogin"
-        app:layout_constraintEnd_toEndOf="@+id/confirmarContrasenyaUsuarioLogin"
+        app:layout_constraintStart_toStartOf="@+id/confirmarContrasenyaUsuarioLogin"
         app:layout_constraintTop_toTopOf="@+id/txtErrorConfContrasenyaLogin" />
+
+    <TextView
+        android:id="@+id/txtOlvidadoContrasenya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="txtOlvidadoContrasenya"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/botonAccederLogin"
+        app:layout_constraintStart_toStartOf="@+id/ContrasenyaUsuarioLogin"
+        app:layout_constraintTop_toBottomOf="@+id/txtErrorContrasenyaLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
