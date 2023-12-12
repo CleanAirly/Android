@@ -3,6 +3,7 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
@@ -30,11 +31,10 @@ public class Utilidades {
      * Utiliza las credenciales del remitente especificadas para autenticarse con el servidor SMTP de Gmail
      * y envía el mensaje. Registra un mensaje en el log para confirmar el envío exitoso o capturar errores.
      *
-     * @param destinatario El correo electrónico del destinatario al que se enviará el mensaje.
-     * @param asunto       El asunto del correo electrónico.
-     * @param cuerpo       El cuerpo del mensaje del correo electrónico.
+     * @param destinatario          El correo electrónico del destinatario al que se enviará el mensaje.
+     * @param codigoVerificacion    El código de verificación para completar el registro.
      */
-    public static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
+    public static void enviarConGMail(String destinatario, String asunto, String codigoVerificacion) {
         String remitente = "contact.cleanairly@gmail.com";
         String claveemail = "zxmz bnux jraj rtwi";
 
@@ -53,10 +53,17 @@ public class Utilidades {
                 MimeMessage message = new MimeMessage(session);
 
                 try {
-                    message.setFrom(new InternetAddress(remitente));
+                    message.setFrom(new InternetAddress(remitente, "CleanAirly"));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
                     message.setSubject(asunto);
-                    message.setText(cuerpo);
+                    message.setText("Estimado usuario,\n\n" +
+                            "Como parte de nuestro compromiso continuo con la seguridad y la protección de tu cuenta, necesitamos verificar tu identidad.\n\n" +
+                            "Tu código de verificación es: "+codigoVerificacion+"\n\n" +
+                            "Por favor, introduce este código en la aplicación móvil para continuar con el proceso de registro. Este código es válido solo por un tiempo limitado y solo puede ser utilizado una vez.\n\n" +
+                            "Si no se encuentra en el proceso de registro o si tienes alguna pregunta, por favor, ignora este correo electrónico y ponte en contacto con nuestro equipo de soporte al cliente.\n\n" +
+                            "Agradecemos tu cooperación y comprensión. Tu seguridad es nuestra máxima prioridad.\n\n" +
+                            "Gracias,\n" +
+                            "Equipo de soporte de CleanAirly™");
 
                     Transport transport = session.getTransport("smtp");
                     transport.connect("smtp.gmail.com", remitente, claveemail);
@@ -66,6 +73,8 @@ public class Utilidades {
                 } catch (MessagingException me) {
                     Log.d("TEST - CORREO", "ERROR");
                     me.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }).start();

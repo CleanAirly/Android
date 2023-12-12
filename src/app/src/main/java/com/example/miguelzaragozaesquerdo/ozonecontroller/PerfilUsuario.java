@@ -97,8 +97,4 @@ public class PerfilUsuario extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
-
-    public void reestablecerPassword(View view){
-
-    }
 }

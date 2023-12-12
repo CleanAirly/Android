@@ -270,7 +270,7 @@ public class RegistroActivity extends AppCompatActivity {
      */
     public void reenviarCodigo(View view){
         codigoVerificacionRegistro = Utilidades.codigoAleatorio();
-        Utilidades.enviarConGMail(email, "Completa tu registro", "CleanAirly - Tu código de registro es "+codigoVerificacionRegistro+". Introducelo para comprobar que este es tu correo.");
+        Utilidades.enviarConGMail(email, "Código de registro", codigoVerificacionRegistro);
     }
 
     /**
