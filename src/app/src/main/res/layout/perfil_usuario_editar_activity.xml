@@ -10,14 +10,15 @@
         android:id="@+id/txtRestablecerPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Restablece tu contraseña"
         android:textColor="@color/colortxt"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCerrarSesion"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/telefonoEditarPerfil" />
 
     <Button
         android:id="@+id/buttonCerrarSesion"
@@ -25,16 +26,16 @@
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="124dp"
         android:background="@drawable/boton_secundario"
         android:onClick="botonCerrarSesion"
         android:text="Cerrar sesión"
         android:textColor="@color/colorBotones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <ImageView
         android:id="@+id/circuloPerfilEditar8"
@@ -143,6 +144,15 @@
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <ImageView
+        android:id="@+id/circuloPerfilEditar7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@drawable/linea_negra"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <ImageView
         android:id="@+id/circuloPerfilEditar3"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -157,61 +167,31 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="132dp"
         android:background="@drawable/botones"
         android:onClick="botonGuardar"
         android:text="Guardar"
         android:textColor="@color/colorFondo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCerrarSesion"
         app:layout_constraintEnd_toEndOf="@+id/telefonoEditarPerfil"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/telefonoEditarPerfil"
-        app:layout_constraintTop_toBottomOf="@+id/telefonoEditarPerfil" />
-
-    <EditText
-        android:id="@+id/nombreEditarPerfil"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/textbox"
-        android:ems="10"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textColorHint="@color/colortxt"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Nombre:"
-        android:textColor="@color/colortxt"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/nombreEditarPerfil"
-        app:layout_constraintStart_toStartOf="@+id/nombreEditarPerfil"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRestablecerPass" />
 
     <EditText
         android:id="@+id/telefonoEditarPerfil"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/textbox"
+
         android:ems="10"
         android:inputType="number"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColorHint="@color/colortxt"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/txtRestablecerPass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -219,27 +199,14 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_medium"
         android:text="Teléfono:"
         android:textColor="@color/colortxt"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/telefonoEditarPerfil"
         app:layout_constraintStart_toStartOf="@+id/telefonoEditarPerfil"
-        app:layout_constraintTop_toBottomOf="@+id/nombreEditarPerfil" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Edita tus datos"
-        android:textColor="@color/colortxt"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -247,10 +214,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:onClick="botonVolverAtras"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icono_flecha_azul" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtErrorTelfEditarPerfil"
@@ -278,11 +243,74 @@
 
     <TextView
         android:id="@+id/txtEmail"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:text="asd"
+        android:textAlignment="textStart"
+        android:textColor="@color/colortxt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="@+id/nombreEditarPerfil"
+        app:layout_constraintStart_toStartOf="@+id/nombreEditarPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCerrarSesion" />
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Tu perfil"
+        android:textColor="@color/colortxt"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintStart_toStartOf="@+id/nombreEditarPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Nombre:"
+        android:textColor="@color/colortxt"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/nombreEditarPerfil"
+        app:layout_constraintStart_toStartOf="@+id/nombreEditarPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/nombreEditarPerfil"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textAlignment="viewStart"
+        android:textColorHint="@color/colortxt"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Email:"
+        android:textColor="@color/colortxt"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtEmail"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEditarPerfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

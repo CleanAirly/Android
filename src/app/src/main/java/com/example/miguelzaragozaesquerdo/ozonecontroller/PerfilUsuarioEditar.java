@@ -142,10 +142,11 @@ public class PerfilUsuarioEditar extends AppCompatActivity {
      * Muestra un cuadro de diálogo de confirmación antes de realizar la acción.
      * Si el usuario confirma, vuelve a la pantalla de perfil del usuario, descartando los cambios.
      *
-     * @param view La vista que activa esta función (generalmente un botón).
+     * La vista que activa esta función (generalmente un botón).
      *             Se utiliza para cumplir con la firma de un método onClick en el archivo de diseño XML.
      */
-    public void botonVolverAtras(View view) {
+    public void onBackPressed() {
+        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setTitle("Descartar Cambios")
                 .setMessage("¿Estás seguro de que quieres descartar los cambios?")
