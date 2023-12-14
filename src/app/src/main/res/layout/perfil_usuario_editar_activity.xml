@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     android:background="@color/colorFondo">
 
+    <TextView
+        android:id="@+id/txtRestablecerPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restablece tu contraseña"
+        android:textColor="@color/colortxt"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCerrarSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/buttonCerrarSesion"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/boton_secundario"
+        android:onClick="botonCerrarSesion"
+        android:text="Cerrar sesión"
+        android:textColor="@color/colorBotones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.234" />
+
     <ImageView
         android:id="@+id/circuloPerfilEditar8"
         android:layout_width="40dp"
@@ -146,7 +176,6 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/textbox"
         android:ems="10"
-        android:hint="Marta"
         android:inputType="text"
         android:textAlignment="center"
         android:textColorHint="@color/colortxt"
@@ -177,7 +206,6 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/textbox"
         android:ems="10"
-        android:hint="456 345 654"
         android:inputType="number"
         android:textAlignment="center"
         android:textColorHint="@color/colortxt"
@@ -247,5 +275,14 @@
         app:layout_constraintEnd_toEndOf="@+id/nombreEditarPerfil"
         app:layout_constraintStart_toStartOf="@+id/nombreEditarPerfil"
         app:layout_constraintTop_toBottomOf="@+id/nombreEditarPerfil" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
+        app:layout_constraintStart_toStartOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCerrarSesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

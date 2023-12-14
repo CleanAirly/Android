@@ -42,7 +42,6 @@ import androidx.appcompat.app.AppCompatActivity;
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 public class MainActivity extends AppCompatActivity {
-
     private TextView elTexto;
     private Button elBotonEnviar;
     private TextView textoPost;

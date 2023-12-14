@@ -203,9 +203,7 @@ public class Login extends AppCompatActivity {
      * Maneja el evento de inicio de sesión o registro.
      */
     public void botonLoginLanding(View view) {
-
         if(!InputNombre.getText().toString().equals("")|| !InputContrasenya.getText().toString().equals("")){
-
             String email = InputNombre.getText().toString();
             String password = Utilidades.hashPassword(InputContrasenya.getText().toString());
 

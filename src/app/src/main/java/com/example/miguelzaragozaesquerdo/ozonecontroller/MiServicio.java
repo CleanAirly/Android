@@ -1,6 +1,7 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -96,6 +97,7 @@ public class MiServicio extends Service {
         }
     }
 
+    @SuppressLint("ForegroundServiceType")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         NotificationCompat.Builder notificacion = new NotificationCompat.Builder(this, CANAL_ID) .setContentTitle("Inicializando...")

@@ -186,7 +186,6 @@ public class Home extends AppCompatActivity {
                 Log.d("TAG2", entries.toString());
             }
 
-
             // Configuración del dataSet
             LineDataSet dataSet = new LineDataSet(entries, "Nivel de Ozono en el aire");
             dataSet.setColor(Color.parseColor("#A2BCF4"));
@@ -201,9 +200,6 @@ public class Home extends AppCompatActivity {
             chart.getXAxis().setDrawGridLines(false);
             chart.getDescription().setEnabled(false);
             chart.invalidate();  // Refrescar la gráfica
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,16 +210,30 @@ public class Home extends AppCompatActivity {
      */
     public void botonLandingPerfil(View view) {
         handler.removeCallbacks(runnable);
-        Intent intent = new Intent(this, PerfilUsuario.class);
+        Intent intent = new Intent(this, PerfilUsuarioEditar.class);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
 
+    /**
+     * Abre la actividad de información del usuario.
+     * Esta función es llamada cuando se hace clic en un botón para ver la información del usuario.
+     * Realiza las siguientes acciones:
+     * 1. Crea una nueva intención para abrir la actividad de información.
+     * 2. Agrega datos de usuario a la intención utilizando un objeto Bundle.
+     * 3. Inicia la actividad de información pasando la intención.
+     *
+     * @param view La vista que activó la función, generalmente un botón.
+     *             Se utiliza para cumplir con la firma de un método onClick en el archivo de diseño XML.
+     *
+     * @see Informacion Actividad que muestra la información del usuario.
+     */
     public void botonAbrirInfomacion(View view) {
         Intent intent = new Intent(this, Informacion.class);
         intent.putExtra("datosUsuario", datosUsuario);
         startActivity(intent);
     }
+
     /**
      * Obtiene los datos del usuario a través de una petición REST.
      * @param email El correo electrónico del usuario.
@@ -343,14 +353,10 @@ public class Home extends AppCompatActivity {
                                     int valor = medicion.getInt("valor");
                                     Log.d("TAG1", Integer.toString(valor));
                                     listaMediciones.add(valor);
-
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-
                         } else {
                             Log.d("TEST - MEDICION", "ERROR");
                         }

@@ -5,7 +5,6 @@ package com.example.miguelzaragozaesquerdo.ozonecontroller;
  * Autor: Mario Merenciano
  */
 public class DatosMedicion {
-
     private int idMedicion;
     private String instante;
     private String lugar;

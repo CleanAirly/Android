@@ -6,6 +6,17 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * La clase Informacion extiende AppCompatActivity y representa la pantalla de información del usuario.
+ * Esta actividad muestra detalles específicos sobre el usuario, como su perfil y otra información relevante.
+ * La información del usuario se recibe a través de un Intent, que se procesa en el método onCreate.
+ * Además de mostrar información, esta clase también gestiona eventos de clic en botones para la navegación
+ * entre diferentes actividades de la aplicación.
+ *
+ * @see DatosUsuario Clase que representa la información del usuario.
+ * @see Home Actividad principal de la aplicación.
+ * @see PerfilUsuario Actividad que muestra el perfil detallado del usuario.
+ */
 public class Informacion extends AppCompatActivity {
 
     private DatosUsuario datosUsuario;

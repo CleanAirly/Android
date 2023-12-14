@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
  * Autor: Mario Merenciano
  */
 public class PerfilUsuario extends AppCompatActivity {
-
     private static final String RUTA = "192.168.1.47";
     private TextView nombreUsuario;
     private TextView emailUsuario;
@@ -37,7 +36,7 @@ public class PerfilUsuario extends AppCompatActivity {
         nombreUsuario = findViewById(R.id.txtNombrePerfil);
         emailUsuario = findViewById(R.id.txtEmailPerfil);
         telfUsuario = findViewById(R.id.txtNumeroPerfil);
-        restablecerContrasenya = findViewById(R.id.txtRestablecerPerfil);
+        restablecerContrasenya = findViewById(R.id.txtRestablecerPass);
         restablecerContrasenya.setPaintFlags(restablecerContrasenya.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
         nombreUsuario.setText(datosUsuario.getNombre());
@@ -89,6 +88,16 @@ public class PerfilUsuario extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Cierra la sesión del usuario actual.
+     * Esta función realiza las siguientes acciones:
+     * 1. Accede a las preferencias compartidas para la autenticación.
+     * 2. Elimina el token de autenticación almacenado.
+     * 3. Aplica los cambios en las preferencias compartidas.
+     * 4. Inicia una nueva actividad de inicio de sesión.
+     * Nota: Al llamar a esta función, el usuario actual se desconectará y será redirigido
+     * a la pantalla de inicio de sesión.
+     */
     private void cerrarSesion() {
         SharedPreferences sharedPreferences = getSharedPreferences("LoginAuth", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
