@@ -19,6 +19,14 @@ import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+/**
+ * Clase que representa la actividad de escaneo de códigos QR utilizando la biblioteca ZXingScannerView.
+ * Implementa ZXingScannerView.ResultHandler para manejar los resultados del escaneo de códigos QR.
+ * Esta actividad permite al usuario escanear códigos QR, procesar los resultados y realizar operaciones
+ * como el registro de nuevos usuarios en una base de datos.
+ *
+ * @author Miguel Zaragoza
+ */
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
     private DatosUsuario datosUsuario;

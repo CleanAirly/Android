@@ -11,8 +11,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+/**
+ * Clase que representa un cuadro de diálogo emergente (Popup) para mostrar la política de privacidad
+ * durante el proceso de registro. Esta clase extiende DialogFragment y se utiliza para crear y mostrar
+ * una ventana emergente con la información de la política de privacidad.
+ *
+ * @author Mario Merenciano
+ */
 public class RegistroPopUpPrivacidad extends DialogFragment {
 
+    /**
+     * Crea y devuelve un nuevo objeto de diálogo. Este método se invoca automáticamente cuando se crea
+     * una instancia de la clase RegistroPopUpPrivacidad. Configura el contenido del diálogo y establece
+     * un botón "Aceptar" para cerrar el cuadro de diálogo.
+     *
+     * @param savedInstanceState El estado anteriormente guardado del fragmento.
+     * @return El diálogo configurado.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -23,6 +38,14 @@ public class RegistroPopUpPrivacidad extends DialogFragment {
         builder.setView(view)
                 .setTitle("Política de privacidad")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+
+                    /**
+                     * Método invocado cuando se hace clic en el botón "Aceptar".
+                     * Realiza las acciones necesarias cuando el usuario acepta la política de privacidad.
+                     *
+                     * @param dialog La instancia del cuadro de diálogo.
+                     * @param id     El identificador del botón (en este caso, siempre es DialogInterface.BUTTON_POSITIVE).
+                     */
                     public void onClick(DialogInterface dialog, int id) {
                         // Acciones a realizar cuando se presiona el botón Aceptar
                     }

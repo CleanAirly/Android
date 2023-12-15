@@ -19,9 +19,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-// -----------------------------------------------------------------------------------
-// @author: Jordi Bataller i Mascarell
-// -----------------------------------------------------------------------------------
+/**
+ * Clase de utilidades con métodos estáticos para realizar diversas operaciones comunes,
+ * como enviar correos electrónicos, generar códigos aleatorios, convertir datos, etc.
+ * Los métodos son estáticos para que puedan ser utilizados sin necesidad de crear una instancia de la clase.
+ *
+ * @author Jordi Bataller, Mario Merenciano
+ */
 public class Utilidades {
 
     /**
@@ -32,6 +36,7 @@ public class Utilidades {
      * y envía el mensaje. Registra un mensaje en el log para confirmar el envío exitoso o capturar errores.
      *
      * @param destinatario          El correo electrónico del destinatario al que se enviará el mensaje.
+     * @param asunto                El asunto del correo electrónico.
      * @param codigoVerificacion    El código de verificación para completar el registro.
      */
     public static void enviarConGMail(String destinatario, String asunto, String codigoVerificacion) {
@@ -85,7 +90,6 @@ public class Utilidades {
      * Esta función crea un código aleatorio utilizando una combinación de letras mayúsculas y números.
      * Se seleccionan caracteres al azar de una cadena predefinida ('caracteres') para formar el código.
      * Este código se compone de 6 caracteres, y cada carácter se elige de forma aleatoria.
-     * Este tipo de código se puede utilizar para funciones como códigos de verificación, identificadores únicos, etc.
      *
      * @return Un string que representa el código aleatorio generado.
      */

@@ -1,94 +1,75 @@
-
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
-
 import java.util.Arrays;
 
-// -----------------------------------------------------------------------------------
-// @author: Jordi Bataller i Mascarell
-// -----------------------------------------------------------------------------------
+/**
+ * Clase que representa una trama iBeacon.
+ * Contiene métodos para obtener diferentes partes de la trama, como prefijo, UUID, major, minor, etc.
+ * También, tiene un constructor que toma un arreglo de bytes como entrada y extrae las partes relevantes de la trama.
+ *
+ * @author Jordi Bataller
+ */
 public class TramaIBeacon {
     private byte[] prefijo = null; // 9 bytes
     private byte[] uuid = null; // 16 bytes
     private byte[] major = null; // 2 bytes
     private byte[] minor = null; // 2 bytes
     private byte txPower = 0; // 1 byte
-
     private byte[] losBytes;
-
     private byte[] advFlags = null; // 3 bytes
     private byte[] advHeader = null; // 2 bytes
     private byte[] companyID = new byte[2]; // 2 bytes
     private byte iBeaconType = 0 ; // 1 byte
     private byte iBeaconLength = 0 ; // 1 byte
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getPrefijo() {
         return prefijo;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getUUID() {
         return uuid;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getMajor() {
         return major;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getMinor() {
         return minor;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte getTxPower() {
         return txPower;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getLosBytes() {
         return losBytes;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getAdvFlags() {
         return advFlags;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getAdvHeader() {
         return advHeader;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte[] getCompanyID() {
         return companyID;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte getiBeaconType() {
         return iBeaconType;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
     public byte getiBeaconLength() {
         return iBeaconLength;
     }
 
-    // -------------------------------------------------------------------------------
-    // -------------------------------------------------------------------------------
+    /**
+     * Constructor de la clase que toma un arreglo de bytes y extrae las partes relevantes de la trama iBeacon.
+     *
+     * @param bytes Arreglo de bytes que representa la trama iBeacon.
+     */
     public TramaIBeacon(byte[] bytes ) {
         this.losBytes = bytes;
 
@@ -103,12 +84,5 @@ public class TramaIBeacon {
         companyID = Arrays.copyOfRange( prefijo, 5, 6+1 ); // 2 bytes
         iBeaconType = prefijo[ 7 ]; // 1 byte
         iBeaconLength = prefijo[ 8 ]; // 1 byte
-
-    } // ()
-} // class
-// -----------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------
-
-
+    }
+}

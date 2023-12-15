@@ -41,6 +41,7 @@ android {
 dependencies {
     //implementation fileTree(dir: "libs", include: ["*.jar"])
     //implementation fileTree(dir: 'C:\\Users\\smere\\AppData\\Local\\Android\\Sdk\\platforms\\android-31', include: ['*.aar', '*.jar'], exclude: [])
+    //implementation fileTree(dir: 'C:\\Users\\smere\\AppData\\Local\\Android\\Sdk\\platforms\\android-34', include: ['*.aar', '*.jar'], exclude: [])
     implementation 'com.sun.mail:android-mail:1.6.7'
     implementation 'com.sun.mail:android-activation:1.6.7'
     implementation 'androidx.appcompat:appcompat:1.6.1'

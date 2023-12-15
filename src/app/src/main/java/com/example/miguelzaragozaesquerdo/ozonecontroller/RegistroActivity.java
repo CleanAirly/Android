@@ -1,11 +1,8 @@
 package com.example.miguelzaragozaesquerdo.ozonecontroller;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -18,22 +15,20 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
+/**
+ * La clase RegistroActivity gestiona el proceso de registro de usuarios en la aplicación.
+ * Proporciona una interfaz de usuario interactiva para recopilar información esencial del usuario,
+ * como nombre, número de teléfono y verificación de código. Utiliza animaciones para guiar al usuario
+ * a través de cada paso del registro, culminando con la opción de enlazar un sensor mediante el escaneo
+ * de un código QR. Los datos recopilados se envían a la actividad ScanActivity para su procesamiento adicional.
+ * Esta clase extiende AppCompatActivity y se infla con el diseño definido en R.layout.registro_activity.
+ *
+ * @author Mario Merenciano
+ */
 public class RegistroActivity extends AppCompatActivity {
 
     // Declaro todas las variables que tenemos en el xml
@@ -105,7 +100,7 @@ public class RegistroActivity extends AppCompatActivity {
         textoIntroduceTuNombre = findViewById(R.id.texto_introduce_tu_nombre);
         inputNombre = findViewById(R.id.input_nombre);
         textoGenial = findViewById(R.id.texto_genial);
-        textoIntroduceTuTelefono = findViewById(R.id.texto_introduce_tu_numero_de_teléfono);
+        textoIntroduceTuTelefono = findViewById(R.id.texto_introduce_tu_numero_de_telefono);
         inputTelefono = findViewById(R.id.input_telefono);
         textoEnlazaSensor = findViewById(R.id.texto_enlaza_sensor);
         btnGuardarNombre = findViewById(R.id.btnNombre);

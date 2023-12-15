@@ -215,7 +215,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/texto_introduce_tu_numero_de_teléfono"
+        android:id="@+id/texto_introduce_tu_numero_de_telefono"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -296,7 +296,7 @@
         android:text="Comprueba que eres tu mediante el correo que hemos enviado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/texto_introduce_tu_numero_de_teléfono"
+        app:layout_constraintStart_toStartOf="@+id/texto_introduce_tu_numero_de_telefono"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
